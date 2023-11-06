@@ -1,0 +1,7 @@
+{
+  "name": "TURISTEO",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

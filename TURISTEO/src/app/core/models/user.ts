@@ -1,5 +1,5 @@
 export interface User {
-    id:number;
+    userId:number;
     userName:string;
     mail:string;
     passworld:string

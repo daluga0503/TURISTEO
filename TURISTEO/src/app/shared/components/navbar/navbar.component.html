@@ -1,8 +1,16 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" class="navbar">
+    <ion-avatar slot="start">
+      <img src="../../../../assets/img/logo.jpg" alt="">
+    </ion-avatar>
     <ion-title>{{pageTitle}}</ion-title>
-    <ion-button (click)="home()">Inicio</ion-button>
-    <ion-button (click)="addPlace()">Añadir Monumento</ion-button>
-    <ion-button (click)="seePlace()">Ver Monumentos</ion-button>
+    <ion-buttons slot="end" class="buttons">
+      <ion-button (click)="home()">Inicio</ion-button>
+      <ion-button (click)="addPlace()">Añadir Monumento</ion-button>
+      <ion-button (click)="seePlace()">Ver Monumentos</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+
+

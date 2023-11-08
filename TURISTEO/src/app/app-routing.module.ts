@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'seeplace',
     loadChildren: () => import('./pages/seeplace/seeplace.module').then( m => m.SeeplacePageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({

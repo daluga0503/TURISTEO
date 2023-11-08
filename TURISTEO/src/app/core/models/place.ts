@@ -1,7 +1,10 @@
 export interface Place {
-    id: number;
-    name: string;
+    placeId: number;
+    placeName: string;
+    photo: string;
     city:string;
+    street: string;
+    postalCode: number;
     typePlace:String;
     ubication:string
 }

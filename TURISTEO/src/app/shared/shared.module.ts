@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 
 
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     //components
     NavbarComponent,
+    LoginFormComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     IonicModule,
     //Components
-    NavbarComponent
+    NavbarComponent,
+    LoginFormComponent
   ]
 })
 export class SharedModule { }

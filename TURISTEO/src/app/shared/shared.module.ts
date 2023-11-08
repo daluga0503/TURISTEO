@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SingupFormComponent } from './components/singup-form/singup-form.component';
 
 
 
@@ -14,7 +15,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
   declarations: [
     //components
     NavbarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SingupFormComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     IonicModule,
     //Components
     NavbarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SingupFormComponent
   ]
 })
 export class SharedModule { }

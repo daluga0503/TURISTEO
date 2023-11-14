@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LenguageService } from './core/service/lenguage.service';
 
 @Component({
   selector: 'app-root',

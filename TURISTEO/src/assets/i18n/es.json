@@ -1,0 +1,20 @@
+{
+    "home":{
+        "description":"Descubre y comparte los rincones más fascinantes del mundo con nuestra aplicación. Añade tus propios lugares de interés y encuentra joyas ocultas recomendadas por otros viajeros apasionados. ¡Explora el mundo a través de los ojos de la comunidad de TURISTEO!",
+        "realizado":"Hecho por "
+    },
+
+    "login":{
+        "email":"Email",
+        "pass":"Contraseña",
+        "buttonLogin":"Login",
+        "noCuenta":"¿No tienes cuenta?",
+        "nocCuentaRegister":"Registrate"
+    },
+    "register":{
+        "email":"Email",
+        "pass":"Contraseña",
+        "confirmPassword":"Confrima la contraseña",
+        "buttonRegister":"Registrar"
+    }
+}

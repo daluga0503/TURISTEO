@@ -1,0 +1,20 @@
+{
+    "home":{
+        "description":"Discover and share the most fascinating corners of the world with our app. Add your own sights and find hidden gems recommended by other passionate travelers. Explore the world through the eyes of the TURISTEO community!",
+        "realizado":"Made by "
+    },
+
+    "login":{
+        "email":"Email",
+        "pass":"Password",
+        "buttonLoogin":"Login",
+        "noCuenta":"Not have an account",
+        "noCuentaRegister":"Register"
+    },
+    "register":{
+        "email":"Email",
+        "pass":"Password",
+        "confirmPassword":"Confirm password",
+        "buttonRegister":"Register"
+    }
+}

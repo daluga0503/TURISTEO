@@ -5,10 +5,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SingupFormComponent } from './components/singup-form/singup-form.component';
-
-
-
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from '../core/translate/translate';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,7 +20,14 @@ import { SingupFormComponent } from './components/singup-form/singup-form.compon
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule
+    RouterModule,
+    TranslateModule.forChild({
+      loader: {
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [HttpClient]
+      }
+      }),
   ],
   exports:[
     CommonModule,
@@ -29,7 +35,8 @@ import { SingupFormComponent } from './components/singup-form/singup-form.compon
     //Components
     NavbarComponent,
     LoginFormComponent,
-    SingupFormComponent
+    SingupFormComponent,
+    TranslateModule
   ]
 })
 export class SharedModule { }

@@ -8,6 +8,9 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { createTranslateLoader } from 'src/app/core/translate/translate';
 
 
 @NgModule({
@@ -16,9 +19,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-
-    //Componentes Compartidos
     SharedModule
+
   ],
   declarations: [LoginPage]
 })

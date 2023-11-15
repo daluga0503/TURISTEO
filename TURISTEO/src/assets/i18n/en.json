@@ -9,7 +9,11 @@
         "pass":"Password",
         "buttonLoogin":"Login",
         "noCuenta":"Not have an account",
-        "noCuentaRegister":"Register"
+        "noCuentaRegister":"Register",
+        "emailRequired":"Email must be obligatory",
+        "emailInvalid":"Invalid Email",
+        "passwordRequired":"Password must be obligatory",
+        "passwordInvalid":"Invalid Password"
     },
     "register":{
         "email":"Email",

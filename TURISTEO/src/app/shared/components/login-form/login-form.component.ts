@@ -22,8 +22,8 @@ export class LoginFormComponent  implements OnInit {
     private formBuilder:FormBuilder
     ) {
       this.form = this.formBuilder.group({
-        email:['', [Validators.required], [Validators.email]],
-        passworld:['', [Validators.required], [Validators.maxLength(7)]]
+        email:['', [Validators.required, Validators.email]],
+        password:['', [Validators.required]]
       })
     }
 
@@ -39,7 +39,7 @@ export class LoginFormComponent  implements OnInit {
 
   onSubmit(){
     this.onsubmit.emit(this.form?.value);
-    this.form?.controls['passworld'].setValue('');
+    this.form?.controls['password'].setValue('');
     this.home()
   }
 }

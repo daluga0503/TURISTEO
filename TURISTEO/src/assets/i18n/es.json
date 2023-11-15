@@ -9,7 +9,11 @@
         "pass":"Contraseña",
         "buttonLogin":"Login",
         "noCuenta":"¿No tienes cuenta?",
-        "nocCuentaRegister":"Registrate"
+        "nocCuentaRegister":"Registrate",
+        "emailRequired":"Email obligatorio",
+        "emailInvalid":"Email incorrecto",
+        "passwordRequired":"Contraseña obligatoria",
+        "passwordInvalid":"Contraseña incorrecta"
     },
     "register":{
         "email":"Email",

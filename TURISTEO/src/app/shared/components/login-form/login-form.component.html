@@ -1,4 +1,4 @@
-<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit" (key.enter)="onSubmit">
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="container">
       <ion-item>
         <ion-input placeholder="{{login.email' | translate}}" formControlName="email"></ion-input>
@@ -6,22 +6,26 @@
       </ion-item>
 
 
-      <p style="color: red;" *ngIf="this.form.get('email')?.errors?.['required'] &&
-      this.form.get('email')?.touched">Email Requerido</p>
-
-      <p style="color: red;" *ngIf="this.form.get('email')?.errors?.['email']">Email Incorrecto</p>
+      <p style="color: red;" *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">
+        {{ "login.emailRequired" | translate }}
+      </p>
+      <p style="color: red;" *ngIf="!form.get('email')?.errors?.['required'] && form.get('email')?.errors && form.get('email')?.touched">
+        {{ "login.emailInvalid" | translate }}
+      </p>
 
 
       <ion-item>
-        <ion-input placeholder="{{'login.pass'}}" formControlName="passworld" type="passworld"></ion-input>
+        <ion-input placeholder="{{'login.pass'}}" formControlName="password" type="password"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
 
 
-      <p style="color: red;" *ngIf="this.form.get('passworld')?.errors?.['required'] && 
-      this.form.get('passworld')?.touched">Contraseña Incorrecto</p>
-
-      <p style="color: red;" *ngIf="this.form.get('passworld')?.errors?.['maxLenght']">Máximo 7 caracteres</p>
+      <p style="color: red;" *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">
+        {{ "login.passwordRequired" | translate }}
+      </p>
+      <p style="color: red;" *ngIf="!form.get('password')?.errors?.['required'] && form.get('password')?.errors && form.get('password')?.touched">
+        {{ "login.passworldInvalid" | translate }}
+      </p>
 
 
       <div>

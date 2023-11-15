@@ -41,7 +41,7 @@ export class LoginFormComponent  implements OnInit {
 
   onSubmit(){
     this.onsubmit.emit(this.form?.value);
-    this.form?.controls['passworld'].setValue('');
+    this.form?.controls['password'].setValue('');
     this.home()
   }
 }

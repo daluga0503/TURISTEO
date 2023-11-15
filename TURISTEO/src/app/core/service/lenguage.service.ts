@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, lastValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class LenguageService {
+export class LanguageService {
 
 
   //Mantiene el idioma actual, inicialmente establecido en ingles.

@@ -6,9 +6,6 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { createTranslateLoader } from 'src/app/core/translate/translate';
-import { HttpClient } from '@angular/common/http';
 
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LenguageService } from 'src/app/core/service/lenguage.service';
+import { LanguageService } from 'src/app/core/service/lenguage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,10 +16,11 @@ export class NavbarComponent  implements OnInit {
 
   constructor(
     private router:Router,
-    private translate: LenguageService,
+    private translate: LanguageService,
   ) {
     //español como idioma por defecto
-    this.translate.defaultLang('es');
+    this.translate.defaultLang(this.selectedLenguage);
+    this.translate.useLanguage(this.selectedLenguage);
   }
 
   ngOnInit() {}

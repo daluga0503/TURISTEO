@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-form',
@@ -21,9 +22,10 @@ export class LoginFormComponent  implements OnInit {
     private router: Router,
     private formBuilder:FormBuilder
     ) {
+      
       this.form = this.formBuilder.group({
         email:['', [Validators.required, Validators.email]],
-        password:['', [Validators.required]]
+        password:['', [Validators.required, Validators.maxLength(7)]]
       })
     }
 

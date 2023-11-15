@@ -8,7 +8,7 @@ import { SingupFormComponent } from './components/singup-form/singup-form.compon
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from '../core/translate/translate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,8 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule,
+    FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     HttpClientModule,
     TranslateModule.forChild({
       loader: {
@@ -35,11 +36,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports:[
     CommonModule,
     IonicModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    TranslateModule,
     //Components
     NavbarComponent,
     LoginFormComponent,
-    SingupFormComponent,
-    TranslateModule
+    SingupFormComponent
+    
   ]
 })
 export class SharedModule { }

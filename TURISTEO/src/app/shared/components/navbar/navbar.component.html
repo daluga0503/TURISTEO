@@ -8,7 +8,7 @@
       <ion-button (click)="home()">Inicio</ion-button>
       <ion-button (click)="addPlace()">Añadir Monumento</ion-button>
       <ion-button (click)="seePlace()">Ver Monumentos</ion-button>
-      <ion-item color="primary" (ionchange)="onChangeLanguage()">
+      <ion-item color="primary" (ionChange)="onChangeLanguage($event)">
         <ion-select label="Idioma">
           <ion-select-option [value]="'en'">English</ion-select-option>
           <ion-select-option [value]="'es'">Español</ion-select-option>

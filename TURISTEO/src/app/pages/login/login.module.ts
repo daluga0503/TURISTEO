@@ -15,12 +15,8 @@ import { createTranslateLoader } from 'src/app/core/translate/translate';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     LoginPageRoutingModule,
-    SharedModule
-
   ],
   declarations: [LoginPage]
 })

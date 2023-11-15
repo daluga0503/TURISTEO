@@ -32,14 +32,14 @@ export class LenguageService {
     });
   }
 
-  //Método para obetener el idioma actual
+  //Método para obtener el idioma actual
   public getLanguage(){
     return this.translate.currentLang;
-  
   }
 
-  public setLanguage(setLang:any){
-    this.translate.use(setLang);
+  //Método para obtener el idioma por defecto
+  public defaultLang(language:string){
+    return this.translate.setDefaultLang(language);
   }
 
   //Método que devuelve un observable que emite la traducción asociada a la clave key proporcionada cuando este libre.

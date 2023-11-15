@@ -1,15 +1,31 @@
-<form>
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit" (key.enter)="onSubmit">
     <div class="container">
       <ion-item>
-        <ion-input placeholder="{{'login.email' | translate}}"></ion-input>
+        <ion-input placeholder="{{login.email' | translate}}" formControlName="email"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
+
+
+      <p style="color: red;" *ngIf="this.form.get('email')?.errors?.['required'] &&
+      this.form.get('email')?.touched">Email Requerido</p>
+
+      <p style="color: red;" *ngIf="this.form.get('email')?.errors?.['email']">Email Incorrecto</p>
+
+
       <ion-item>
-        <ion-input placeholder="{{'login.pass'}}"></ion-input>
+        <ion-input placeholder="{{'login.pass'}}" formControlName="passworld" type="passworld"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
+
+
+      <p style="color: red;" *ngIf="this.form.get('passworld')?.errors?.['required'] && 
+      this.form.get('passworld')?.touched">Contraseña Incorrecto</p>
+
+      <p style="color: red;" *ngIf="this.form.get('passworld')?.errors?.['maxLenght']">Máximo 7 caracteres</p>
+
+
       <div>
-        <ion-button type="submit"  expand="block" fill="outline" (click)="home()">{{"login.buttonLogin" | translate}}</ion-button>
+        <ion-button type="submit" [disabled]="!form.valid" expand="block" fill="outline"(click)="onSubmit()">{{"login.buttonLogin" | translate}}</ion-button>
       </div>
       <div class="register-link">
         {{"login.noCuenta" | translate}}<a [routerLink]="['/singup']">{{"login.noCuentaRegister" | translate}}</a>

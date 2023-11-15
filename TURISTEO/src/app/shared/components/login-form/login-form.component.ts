@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +9,23 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent  implements OnInit {
 
-  constructor(private router: Router) { }
+  form:FormGroup|null=null;
+
+  @Input('email') set email(value:string){
+    if (this.form) this.form.controls['email'].setValue(value);
+  }
+
+  @Output() onsubmit = new EventEmitter<void>();
+
+  constructor(
+    private router: Router,
+    private formBuilder:FormBuilder
+    ) {
+      this.form = this.formBuilder.group({
+        email:['', [Validators.required], [Validators.email]],
+        passworld:['', [Validators.required], [Validators.maxLength(7)]]
+      })
+    }
 
   ngOnInit() {}
 
@@ -18,5 +35,11 @@ export class LoginFormComponent  implements OnInit {
 
   public singUp(){
     this.router.navigate(['singup']);
+  }
+
+  onSubmit(){
+    this.onsubmit.emit(this.form?.value);
+    this.form?.controls['passworld'].setValue('');
+    this.home()
   }
 }

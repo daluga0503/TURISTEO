@@ -8,6 +8,7 @@ import { SingupFormComponent } from './components/singup-form/singup-form.compon
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from '../core/translate/translate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     CommonModule,
     IonicModule,
     RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     TranslateModule.forChild({
       loader: {
       provide: TranslateLoader,

@@ -10,13 +10,16 @@ import { LenguageService } from 'src/app/core/service/lenguage.service';
 export class NavbarComponent  implements OnInit {
 
   pageTitle = "TURISTEO"
+
+  //asigno el español como idioma seleccionado
   selectedLenguage:string='es';
 
   constructor(
     private router:Router,
     private translate: LenguageService,
   ) {
-    this.selectedLenguage = translate.getLanguage();
+    //español como idioma por defecto
+    this.translate.defaultLang('es');
   }
 
   ngOnInit() {}
@@ -33,9 +36,12 @@ export class NavbarComponent  implements OnInit {
     this.router.navigate(['home'])
   }
 
-  public onChangeLanguage(){
-    this.translate.setLanguage(this.selectedLenguage);
+
+
+  public onChangeLanguage(event: any){
+    //el idioma seleccionado se iguala al valor seleccionado del evento
+    this.selectedLenguage = event.detail.value as string;
+    //informa del nuevo valor del idioma pasandole el idioma actualizado
+    this.translate.useLanguage(this.selectedLenguage);
   }
-
-
 }

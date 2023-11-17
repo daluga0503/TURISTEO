@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { createTranslateLoader } from './core/translate/translate';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    SharedModule,
     IonicModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({

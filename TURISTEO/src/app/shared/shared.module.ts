@@ -14,9 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     //components
-    NavbarComponent,
     LoginFormComponent,
-    SingupFormComponent
+    SingupFormComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -41,9 +41,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     TranslateModule,
     //Components
-    NavbarComponent,
     LoginFormComponent,
-    SingupFormComponent
+    SingupFormComponent,
+    NavbarComponent
     
   ]
 })

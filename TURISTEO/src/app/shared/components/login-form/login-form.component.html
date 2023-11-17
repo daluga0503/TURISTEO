@@ -6,8 +6,8 @@
       </ion-item>
 
 
-      <p style="color: red;" *ngIf="form.controls['email']?.errors?.['required'] && form.controls['email'].touched">Email Requerido</p>
-      <p style="color: red;" *ngIf="form.controls['email'].errors?.['email']">Email Incorrecto</p>
+      <p style="color: red;" *ngIf="form.controls['email']?.errors?.['required'] && form.controls['email'].touched">{{"login.emailRequired" | translate}}</p>
+      <p style="color: red;" *ngIf="form.controls['email'].errors?.['email']">{{"login.emailInvalid" | translate}}</p>
 
       <ion-item>
         <ion-input placeholder="{{'login.pass' | translate}}" formControlName="password" type="password"></ion-input>
@@ -16,9 +16,8 @@
 
 
 
-      <p style="color: red;" *ngIf="form.controls['password'].errors?.['required'] && form.controls['password'].touched">Contraseña Incorrecto</p>
-
-      <p style="color: red;" *ngIf="form.controls['password'].errors?.['maxLenght']">Máximo 7 caracteres</p>
+      <p style="color: red;" *ngIf="form.controls['password'].errors?.['required'] && form.controls['password'].touched">{{"login.passwordRequired" | translate}}</p>
+      <p style="color: red;" *ngIf="form.controls['password'].errors?.['password']">{{"login.passwordInvalid" | translate}}</p>
 
 
       <div>

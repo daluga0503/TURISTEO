@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserCredentials } from 'src/app/core/models/user-credentials';
+import { PasswordValidation } from 'src/app/core/validators/password';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +17,7 @@ export class LoginFormComponent  implements OnInit {
     if (this.form) this.form.controls['email'].setValue(value);
   }
 
-  @Output() onsubmit = new EventEmitter<void>();
+  @Output() onsubmit = new EventEmitter<UserCredentials>();
 
   constructor(
     private router: Router,
@@ -30,9 +32,7 @@ export class LoginFormComponent  implements OnInit {
 
   ngOnInit() {}
 
-  public home(){
-    this.router.navigate(['home']);
-  }
+
 
   public singUp(){
     this.router.navigate(['singup']);
@@ -41,6 +41,5 @@ export class LoginFormComponent  implements OnInit {
   onSubmit(){
     this.onsubmit.emit(this.form?.value);
     this.form?.controls['password'].setValue('');
-    this.home()
   }
 }

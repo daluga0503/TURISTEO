@@ -9,7 +9,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <app-login-form></app-login-form>
+        <app-login-form (onsubmit)="onLogin($event)"></app-login-form>
       </ion-card-content>
     </ion-card>
   </div>

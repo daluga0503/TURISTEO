@@ -9,6 +9,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from '../core/translate/translate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PlaceFormComponent } from './components/place-form/place-form.component';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     //components
     LoginFormComponent,
     SingupFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    PlaceFormComponent
   ],
   imports: [
     CommonModule,
@@ -43,8 +46,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     //Components
     LoginFormComponent,
     SingupFormComponent,
-    NavbarComponent
-    
+    NavbarComponent,
+    PlaceFormComponent
   ]
 })
 export class SharedModule { }

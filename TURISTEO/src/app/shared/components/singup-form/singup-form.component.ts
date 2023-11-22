@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserRegisterInfo } from 'src/app/core/models/user-register-info';
 
 @Component({
   selector: 'app-singup-form',
@@ -11,23 +12,26 @@ export class SingupFormComponent  implements OnInit {
 
   form:FormGroup|null=null;
 
+  @Output() onsubmit: EventEmitter<UserRegisterInfo> = new EventEmitter<UserRegisterInfo>();
+
   constructor(
     private route: Router,
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
     ) {
       this.form = this.formBuilder.group({
-        name: ['', Validators.required],
-        surname:['', Validators.required],
-        email:['', Validators.required, Validators.email],
-        password:['', Validators.required, Validators.minLength(6)],
-        confirmPassword:['', Validators.required]
+        username:['', [Validators.required]],
+        email:['', [Validators.required, Validators.email]],
+        name:['', [Validators.required]],
+        surname:['', [Validators.required]],
+        password:['', [Validators.required, Validators.minLength(6)]]
       })
-      }
+    }
       ngOnInit() {}
-
-  public home(){
-    this.route.navigate(['home']);
-  } 
+  
+  onSubmit(){
+    this.onsubmit.emit(this.form?.value);
+    this.form?.controls['password'].setValue('');
+  }
 }
 
 

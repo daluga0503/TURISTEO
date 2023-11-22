@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LanguageService } from './core/service/lenguage.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { AuthService } from './core/service/api/auth.service';
+import { User } from './core/models/user';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,28 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+  user:User|undefined = undefined;
+
   constructor(
     private router:Router,
+    private auth: AuthService
   ) {
+    this.auth.isLogged$.subscribe(logged=>{
+      if(logged){
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/login'])
+      }
+    });
   }
 
   ngOnInit(){}
+
+  onSignOut(){
+    this.auth.logout().subscribe(_=>{
+      this.router.navigate(['/login']);
+      this.user = undefined;
+    });
+  }
 
 }

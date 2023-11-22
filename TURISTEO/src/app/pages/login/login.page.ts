@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserCredentials } from 'src/app/core/models/user-credentials';
+import { AuthService } from 'src/app/core/service/api/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth:AuthService,
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onLogin(credentials:UserCredentials){
+    this.auth.login(credentials).subscribe({
+      next:data=>{
+        console.log('Data login : ', data);
+      },
+      error:err =>{
+        console.log(err);
+      }
+    });
   }
 
 }

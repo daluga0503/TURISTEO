@@ -1,19 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary" class="navbar">
-    <ion-avatar slot="start">
-      <img src="../../../../assets/img/logo-borde.png" alt="">
-    </ion-avatar>
-    <ion-title>{{pageTitle}}</ion-title>
+  <ion-toolbar color="black" class="navbar">
+    <ion-menu-button color="primary" class="buttons" slot="start"></ion-menu-button>
     <ion-buttons slot="end" class="buttons">
-      <ion-button (click)="home()">Inicio</ion-button>
-      <ion-button (click)="addPlace()">Añadir Monumento</ion-button>
-      <ion-button (click)="seePlace()">Ver Monumentos</ion-button>
-      <ion-item color="primary" (ionChange)="onChangeLanguage($event)">
+      <ion-item color="black" (ionChange)="onChangeLanguage($event)">
         <ion-select label="Idioma">
           <ion-select-option [value]="'en'">English</ion-select-option>
           <ion-select-option [value]="'es'">Español</ion-select-option>
         </ion-select>
       </ion-item>
+      <ion-button >
+        Daniel
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

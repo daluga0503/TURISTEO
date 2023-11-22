@@ -9,16 +9,26 @@
         "pass":"Contraseña",
         "buttonLogin":"Login",
         "noCuenta":"¿No tienes cuenta?",
-        "nocCuentaRegister":"Registrate",
+        "noCuentaRegister":"Registrate",
         "emailRequired":"Email obligatorio",
         "emailInvalid":"Email incorrecto",
         "passwordRequired":"Contraseña obligatoria",
         "passwordInvalid":"Contraseña incorrecta"
     },
     "register":{
+        "name":"Nombre",
+        "surname":"Apellido",
         "email":"Email",
         "pass":"Contraseña",
-        "confirmPassword":"Confrima la contraseña",
-        "buttonRegister":"Registrar"
+        "confirmPass":"Confirmar contraseña",
+        "buttonRegister":"Registrar",
+        "nameRequired": "Nombre obligatorio",
+        "surnameRequired":"Apellido obligatorio",
+        "emailRequired":"Email obligatorio",
+        "emailInvalid":"Email incorrecto",
+        "passwordRequired":"Contraseña obligatoria",
+        "passwordInvalid":"Contraseña incorrecta. Mínimo 6 dígitos",
+        "confirmPassword":"Confirmación obligatoria",
+        "matchPassword":"Las contraseñas no coinciden"
     }
 }

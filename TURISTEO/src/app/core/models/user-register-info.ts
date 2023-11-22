@@ -3,5 +3,5 @@ export interface UserRegisterInfo{
     name:string,
     surname:string,
     password:string,
-    nickname:string
+    username:string
 }

@@ -9,7 +9,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <app-singup-form></app-singup-form>
+        <app-singup-form (onsubmit)="onRegister($event)"></app-singup-form>
       </ion-card-content>
     </ion-card>
   </div>

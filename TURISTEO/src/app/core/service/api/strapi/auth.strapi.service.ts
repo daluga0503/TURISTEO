@@ -34,7 +34,7 @@ export class AuthStrapiService extends AuthService{
   public login(credentials:UserCredentials):Observable<void>{
     return new Observable<void>(obs=>{
       const _credentials:StrapiLoginPayload = {
-        identifier:credentials.username,
+        identifier:credentials.email,
         password:credentials.password
       };
       this.apiSvc.post("/auth/local", _credentials).subscribe({
@@ -62,20 +62,20 @@ export class AuthStrapiService extends AuthService{
     return new Observable<void>(obs=>{
       const _info:StrapiRegisterPayload = {
         email:info.email,
-        username:info.nickname,
-        password:info.password
+        password:info.password,
+        username:info.username
       }
       this.apiSvc.post("/auth/local/register", info).subscribe({
         next:async (data:StrapiRegisterResponse)=>{
           let connected = data && data.jwt!='';
           this._logged.next(connected);
           await lastValueFrom(this.jwtSvc.saveToken(data.jwt));
-          const _extended_user:StrapiExtendedUser= {
+          const _extended_users:StrapiExtendedUser= {
             name:info.name,
             surname:info.surname,
-            user_id:data.user.id
+            users_permissions_user:data.user.username
           }
-          await lastValueFrom(this.apiSvc.post("/extended_user", _extended_user)).catch;
+          await lastValueFrom(this.apiSvc.post("/extended_users", _extended_users)).catch;
           obs.next();
           obs.complete();
         },
@@ -90,7 +90,7 @@ export class AuthStrapiService extends AuthService{
     return new Observable<User>(obs=>{
       this.apiSvc.get('/users/me').subscribe({
         next:async (user:StrapiMe)=>{
-          let extended_user:StrapiArrayResponse<StrapiExtendedUser> = await lastValueFrom(this.apiSvc.get(`/extended-users?filters[user_id]=${user.id}`));
+          let extended_user:StrapiArrayResponse<StrapiExtendedUser> = await lastValueFrom(this.apiSvc.get(`/extended_user?filters[user_id]=${user.id}`));
           let ret:User = {
             id:user.id,
             name:extended_user.data[0].attributes.name,

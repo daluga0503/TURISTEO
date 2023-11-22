@@ -9,7 +9,6 @@ import { LanguageService } from 'src/app/core/service/lenguage.service';
 })
 export class NavbarComponent  implements OnInit {
 
-  pageTitle = "TURISTEO"
 
   //asigno el español como idioma seleccionado
   selectedLenguage:string='es';
@@ -24,19 +23,6 @@ export class NavbarComponent  implements OnInit {
   }
 
   ngOnInit() {}
-
-  public addPlace(){
-    this.router.navigate(['addplace'])
-  }
-
-  public seePlace(){
-    this.router.navigate(['seeplace'])
-  }
-
-  public home(){
-    this.router.navigate(['home'])
-  }
-
 
 
   public onChangeLanguage(event: any){

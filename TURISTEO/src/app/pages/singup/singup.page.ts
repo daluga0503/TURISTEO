@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserRegisterInfo } from 'src/app/core/models/user-register-info';
+import { AuthService } from 'src/app/core/service/api/auth.service';
 
 @Component({
   selector: 'app-singup',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingupPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth:AuthService
+  ) { }
 
   ngOnInit() {
   }
 
+  onRegister(credentials:UserRegisterInfo){
+    this.auth.register(credentials).subscribe({
+      next:data=>{
+        console.log(data);
+        console.log('success');
+      },
+      error:err =>{
+        console.error(`Error ${err}`);
+      }      
+    });
+  }
 }

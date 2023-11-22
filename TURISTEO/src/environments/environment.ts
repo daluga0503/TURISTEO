@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiJsonServer: 'http://localhost:3000',
-  apiUrl: 'https://turisteo.onrender.com'
+  apiUrl: 'http://localhost:1337/api'
 };
 
 /*

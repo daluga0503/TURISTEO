@@ -22,6 +22,7 @@ import { HttpClientWebProvider } from './core/service/http/http-client-web.provi
 import { MediaStrapiService } from './core/service/api/strapi/media.strapi.service';
 import { HttpClientProvider } from './core/service/http/http-client.provider';
 import { MediaService } from './core/service/api/media.service';
+import { PlaceService } from './core/service/api/place.service';
 
 export function MediaServiceFactory(
   api:ApiService){
@@ -84,7 +85,8 @@ export function AuthServiceFactory(
       provide: MediaService,
       deps: [ApiService],
       useFactory: MediaServiceFactory,  
-    }
+    },
+    PlaceService
 ],
   bootstrap: [AppComponent],
 })

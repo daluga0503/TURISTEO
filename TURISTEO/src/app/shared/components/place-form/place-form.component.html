@@ -1,27 +1,26 @@
-<!--
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <ion-item>
-    <ion-label position="stacked">Nombre del lugar</ion-label>
-    <ion-input formControlName="placeName" placeholder="Nombre del lugar"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Foto (URL)</ion-label>
-    <ion-input formControlName="photo" placeholder="URL de la foto"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Ciudad</ion-label>
-    <ion-input formControlName="city" placeholder="Ciudad"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Calle</ion-label>
-    <ion-input formControlName="street" placeholder="Calle"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Tipo de lugar</ion-label>
-    <ion-select formControlName="typePlace" placeholder="Seleccionar">
-      <ion-select-option *ngFor="let type of types" [value]="type">{{ type }}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-button type="submit" expand="block" [disabled]="form.invalid">Crear Lugar</ion-button>
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="form-place">
+  <ion-list>
+
+
+        
+    <app-picture-selectable formControlName="picture"></app-picture-selectable>
+
+    <ion-item>
+      <ion-input formControlName="placeName" label="Nombre del lugar" placeholder="Introduzca el nombre del sitio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="city" label="Nombre de la ciudad" placeholder="Introduzca el nombre de la ciudad"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="street" label="Dirección" placeholder="Introduzca la dirección del lugar"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="typePlace" label="Selecciona el tipo" placeholder="Seleccionar"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="!form.dirty">Crear Lugar</ion-button>
+  </ion-list>
 </form>
--->

@@ -13,6 +13,5 @@ export interface Place {
     placeName: string;
     photo: string;
     city:string;
-    street: string;
     typePlace: TyplePlace;
 }

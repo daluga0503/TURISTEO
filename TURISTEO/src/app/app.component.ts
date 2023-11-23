@@ -35,5 +35,4 @@ export class AppComponent {
       this.user = undefined;
     });
   }
-
 }

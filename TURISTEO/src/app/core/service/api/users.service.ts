@@ -20,6 +20,8 @@ export class UsersService {
 
   private _users:BehaviorSubject<PaginatedUsers> = new BehaviorSubject<PaginatedUsers>({data:[], pagination:{page:0,pageCount:0, pageSize:0, total:0}});
   public users$:Observable<PaginatedUsers> = this._users.asObservable();
+
+  
   public addUser(user:User):Observable<User>{
     return this.dataService.post<User>("extended-users", user).pipe(tap(_=>{
       this.getAll().subscribe();

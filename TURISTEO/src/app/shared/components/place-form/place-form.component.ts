@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PopoverController } from '@ionic/angular';
-import { Place, TyplePlace } from 'src/app/core/models/place';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-place-form',
@@ -9,48 +8,25 @@ import { Place, TyplePlace } from 'src/app/core/models/place';
   styleUrls: ['./place-form.component.scss'],
 })
 export class PlaceFormComponent  implements OnInit {
+  form:FormGroup|null=null;
 
 
+  ngOnInit(): void {}
 
-
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  /*
-
-  @Input() types: TyplePlace[] = Object.values(TyplePlace);
-  @Output() placeCreated = new EventEmitter<Place>();
-
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private popoverController: PopoverController) {
+  constructor(
+    private formBuilder:FormBuilder,
+    private _modal:ModalController
+  ){
     this.form = this.formBuilder.group({
-      placeName: ['', Validators.required],
-      photo: ['', Validators.required],
-      city: ['', Validators.required],
-      street: ['', Validators.required],
-      typePlace: [null, Validators.required],
-    });
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+      picture:['',[Validators.required]],
+      placeName:['', [Validators.required]],
+      city:['', [Validators.required]],
+      street:['',[Validators.required]],
+      typePlace:['', Validators.required]
+    })
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      const newPlace: Place = {
-        placeId: Date.now(),
-        ...this.form.value,
-      };
-
-      this.placeCreated.emit(newPlace);
-      this.dismissPopover();
-    }
+  onSubmit(){
+    this._modal.dismiss(this.form?.value, 'ok')
   }
-
-  async dismissPopover() {
-    await this.popoverController.dismiss();
-  }
-  */
 }

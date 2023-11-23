@@ -10,6 +10,7 @@ import { createTranslateLoader } from '../core/translate/translate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlaceFormComponent } from './components/place-form/place-form.component';
+import { PictureSelectableComponent } from './components/picture-selectable/picture-selectable.component';
 
 
 
@@ -19,7 +20,8 @@ import { PlaceFormComponent } from './components/place-form/place-form.component
     LoginFormComponent,
     SingupFormComponent,
     NavbarComponent,
-    PlaceFormComponent
+    PlaceFormComponent,
+    PictureSelectableComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { PlaceFormComponent } from './components/place-form/place-form.component
     LoginFormComponent,
     SingupFormComponent,
     NavbarComponent,
-    PlaceFormComponent
+    PlaceFormComponent,
+    PictureSelectableComponent
   ]
 })
 export class SharedModule { }

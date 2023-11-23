@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalController, PopoverController, ToastController } from '@ionic/angular';
 import { Place } from 'src/app/core/models/place';
-import { MediaService } from 'src/app/core/service/api/media.service';
+import { PlaceService } from 'src/app/core/service/api/place.service';
 import { UsersService } from 'src/app/core/service/api/users.service';
 import { PlaceFormComponent } from 'src/app/shared/components/place-form/place-form.component';
 
@@ -15,17 +14,47 @@ export class AddplacePage implements OnInit {
 
 
   constructor(
-    private router:Router,
     private toast:ToastController,
     public users:UsersService,
-    private media:MediaService,
+    private PlaceService: PlaceService,
     private modal:ModalController,
-    private popoverController: PopoverController
   ) { }
 
   ngOnInit() {}
-  /*
-  async newPlace(place:Place) {
 
-*/
+  async presentForm(data: Place | null, onDismiss: (result: any) => void) {
+    const modal = await this.modal.create({
+      component: PlaceFormComponent,
+      componentProps: {
+        place: data,
+      },
+      cssClass: "modal-full-right-side",
+    });
+  
+    modal.onDidDismiss().then((result) => {
+      if (result && result.data) {
+        onDismiss(result);
+      }
+    });
+  
+    await modal.present();
+  }
+
+  onNewPlace() {
+    this.presentForm(null, (result) => {
+      console.log('Result of add new place', result);
+      if (result && result.data) {
+        this.PlaceService.addPlace(result.data).subscribe(_ => {
+          this.toast.create({
+            message: 'Place added successfully',
+            duration: 2000,
+            position: 'top',
+            color: 'success'
+          }).then(toast => {
+            toast.present();
+          });
+        });
+      }
+    });
+  }
 }

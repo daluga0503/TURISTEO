@@ -1,0 +1,39 @@
+
+.form-place{
+    max-width: 700px; 
+    margin: auto; 
+}
+
+app-picture-selectable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ion-list {
+    padding: 16px;
+}
+
+ion-item {
+    margin-bottom: 12px;
+}
+
+ion-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+ion-button {
+    margin-top: 16px;
+}
+
+ion-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+}

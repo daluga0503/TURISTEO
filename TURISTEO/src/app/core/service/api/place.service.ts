@@ -29,25 +29,6 @@ import { ApiService } from "./api.service";
         );
     }
 
-    public getPlace(placeId: number): Observable<Place> {
-        return this.api.get(`sitios/${placeId}`).pipe(
-        map(placeData => this.mapToPlace(placeData))
-            );
-    }
-
-    public updatePlace(place: Place): Observable<Place> {
-        return this.api.put(`sitios/${place.placeId}`, place).pipe(
-        map(response => this.mapToPlace(response))
-        );
-    }
-
-    public deletePlace(placeId: number): Observable<void> {
-        return this.api.delete(`sitios/${placeId}`).pipe(
-        tap(_ => this.getAll().subscribe())
-        );
-    }
-
-
     private mapToPlace(data: any): Place {
         return {
             placeId: data.id,

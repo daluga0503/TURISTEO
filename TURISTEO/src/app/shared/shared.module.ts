@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlaceFormComponent } from './components/place-form/place-form.component';
 import { PictureSelectableComponent } from './components/picture-selectable/picture-selectable.component';
+import { TypePlaceSelectorComponent } from './components/type-place-selector/type-place-selector.component';
 
 
 
@@ -21,7 +22,8 @@ import { PictureSelectableComponent } from './components/picture-selectable/pict
     SingupFormComponent,
     NavbarComponent,
     PlaceFormComponent,
-    PictureSelectableComponent
+    PictureSelectableComponent,
+    TypePlaceSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { PictureSelectableComponent } from './components/picture-selectable/pict
     SingupFormComponent,
     NavbarComponent,
     PlaceFormComponent,
-    PictureSelectableComponent
+    PictureSelectableComponent,
+    TypePlaceSelectorComponent
   ]
 })
 export class SharedModule { }

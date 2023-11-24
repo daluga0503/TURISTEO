@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+
+export const PICTURE_SELECTABLE_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => PictureSelectableComponent),
+  multi: true
+};
 
 @Component({
   selector: 'app-picture-selectable',
   templateUrl: './picture-selectable.component.html',
   styleUrls: ['./picture-selectable.component.scss'],
+  providers:[PICTURE_SELECTABLE_VALUE_ACCESSOR]
 })
-export class PictureSelectableComponent  implements OnInit {
+export class PictureSelectableComponent  implements OnInit , ControlValueAccessor{
 
   private _picture = new BehaviorSubject("");
   public picture$ = this._picture.asObservable();

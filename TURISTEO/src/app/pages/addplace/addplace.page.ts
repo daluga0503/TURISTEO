@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController, ToastController } from '@ionic/angular';
+import { dataURLtoBlob } from 'src/app/core/helpers/blob';
 import { Place } from 'src/app/core/models/place';
+import { MediaService } from 'src/app/core/service/api/media.service';
 import { PlaceService } from 'src/app/core/service/api/place.service';
 import { UsersService } from 'src/app/core/service/api/users.service';
 import { PlaceFormComponent } from 'src/app/shared/components/place-form/place-form.component';
@@ -18,6 +20,7 @@ export class AddplacePage implements OnInit {
     public users:UsersService,
     private PlaceService: PlaceService,
     private modal:ModalController,
+    private media:MediaService
   ) { }
 
   ngOnInit() {}
@@ -42,19 +45,24 @@ export class AddplacePage implements OnInit {
 
   onNewPlace() {
     this.presentForm(null, (result) => {
-      console.log('Result of add new place', result);
       if (result && result.data) {
-        this.PlaceService.addPlace(result.data).subscribe(_ => {
-          this.toast.create({
-            message: 'Place added successfully',
-            duration: 2000,
-            position: 'top',
-            color: 'success'
-          }).then(toast => {
-            toast.present();
-          });
-        });
-      }
+        dataURLtoBlob(result.data.photo, (blob:Blob)=>{
+          this.media.upload(blob).subscribe((media:number[])=>{
+            result.data.photo = media[0];
+            this.PlaceService.addPlace(result.data).subscribe(_ => {
+              console.log('Result of add new place', result);
+              this.toast.create({
+                message: 'Place added successfully',
+                duration: 2000,
+                position: 'top',
+                color: 'success'
+              }).then(toast => {
+                toast.present();
+              });
+            });
+          }
+          )}
+      )}
     });
   }
 }

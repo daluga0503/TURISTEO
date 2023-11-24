@@ -18,10 +18,9 @@ export class PlaceFormComponent  implements OnInit {
     private _modal:ModalController
   ){
     this.form = this.formBuilder.group({
-      picture:['',[Validators.required]],
+      photo:['',[Validators.required]],
       placeName:['', [Validators.required]],
       city:['', [Validators.required]],
-      street:['',[Validators.required]],
       typePlace:['', Validators.required]
     })
   }

@@ -46,12 +46,14 @@ export interface StrapiLoginResponse{
 export type StrapiRegisterResponse = StrapiLoginResponse;
 
 export interface StrapiExtendedUser{
-    name:string,
-    surname:string,
-    users_permissions_user:string,
-    nickname?:string,
-    picture?:{
-        data:StrapiData<StrapiMedia>
+    data: {
+        name:string,
+        surname:string,
+        users_permissions_user:number,
+        nickname?:string,
+        picture?:{
+            data:StrapiData<StrapiMedia>
+        }
     }
 }
 

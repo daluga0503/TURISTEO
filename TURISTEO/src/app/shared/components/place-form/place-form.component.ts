@@ -19,11 +19,13 @@ export class PlaceFormComponent  implements OnInit {
   ){
     this.form = this.formBuilder.group({
       photo:['',[Validators.required]],
-      placeName:['', [Validators.required]],
+      name:['', [Validators.required]],
       city:['', [Validators.required]],
       typePlace:['', Validators.required]
     })
   }
+
+
 
   onSubmit(){
     this._modal.dismiss(this.form?.value, 'ok')

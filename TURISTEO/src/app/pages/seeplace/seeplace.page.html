@@ -1,2 +1,9 @@
-
-<p>ver sitios turisticos</p>
+<ion-content [fullscreen]="false" class="custom-margin">
+    <div>
+        <app-place-info
+        *ngFor="let place of places$ | async; let i = index"
+        [place]="place"
+        >
+        </app-place-info>
+    </div>
+</ion-content>

@@ -1,4 +1,4 @@
-export enum TyplePlace{
+export enum TypePlace{
     PARK = "Park",
     MONUMENT = "Monument",
     CHURCHE = "Churche",
@@ -10,8 +10,16 @@ export enum TyplePlace{
 
 export interface Place {
     placeId: number;
-    placeName: string;
+    name: string;
     photo: string;
     city:string;
-    typePlace: TyplePlace;
+    typePlace: TypePlace;
 }
+
+export interface Attributes {
+    name: string;
+    city: string;
+    photo: string; // Ajusta el tipo según tu estructura
+    typePlace: string; // Ajusta el tipo según tu estructura
+    // Agrega las demás propiedades si es necesario
+  }

@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlaceFormComponent } from './components/place-form/place-form.component';
 import { PictureSelectableComponent } from './components/picture-selectable/picture-selectable.component';
 import { TypePlaceSelectorComponent } from './components/type-place-selector/type-place-selector.component';
+import { PlaceInfoComponent } from './components/place-info/place-info.component';
 
 
 
@@ -23,7 +24,8 @@ import { TypePlaceSelectorComponent } from './components/type-place-selector/typ
     NavbarComponent,
     PlaceFormComponent,
     PictureSelectableComponent,
-    TypePlaceSelectorComponent
+    TypePlaceSelectorComponent,
+    PlaceInfoComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { TypePlaceSelectorComponent } from './components/type-place-selector/typ
     NavbarComponent,
     PlaceFormComponent,
     PictureSelectableComponent,
-    TypePlaceSelectorComponent
+    TypePlaceSelectorComponent,
+    PlaceInfoComponent
   ]
 })
 export class SharedModule { }

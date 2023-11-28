@@ -14,6 +14,7 @@ export class SeeplacePage implements OnInit {
 
   private _places = new BehaviorSubject<Place[]>([]);
   public places$ = this._places.asObservable();
+  showButtons = false;
 
   constructor(
     private placeSvc: PlaceService) { } 

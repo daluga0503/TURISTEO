@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController, ToastController, ToastOptions } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { dataURLtoBlob } from 'src/app/core/helpers/blob';
 import { Place } from 'src/app/core/models/place';
 import { User } from 'src/app/core/models/user';
@@ -21,7 +21,7 @@ export class AddplacePage implements OnInit {
   private _places = new BehaviorSubject<Place[]>([]);
   public places$ = this._places.asObservable();
 
-
+  showButtons = true;
 
 
   constructor(
@@ -34,11 +34,7 @@ export class AddplacePage implements OnInit {
   ) { }
 
 
-
-
-
   ngOnInit() {
-
     this.auth.userId$.subscribe(userId => {
       if (userId !== null) {
         this.loadPlaces(userId);
@@ -56,23 +52,25 @@ export class AddplacePage implements OnInit {
 
 
   async presentForm(data: Place | null, onDismiss: (result: any) => void) {
-    const modal = await this.modal.create({
-      component: PlaceFormComponent,
-      componentProps: {
-        place: data,
-      },
-      cssClass: "modal-full-right-side",
-    });
-  
-    modal.onDidDismiss().then((result) => {
-      if (result && result.data) {
-        console.log('data:', data);
-        onDismiss(result);
-      }
-    });
-  
-    await modal.present();
+      const modal = await this.modal.create({
+        component: PlaceFormComponent,
+        componentProps: {
+          place: data,
+        },
+        cssClass: "modal-full-right-side",
+      });
+    
+      modal.onDidDismiss().then((result) => {
+        if (result && result.data) {
+          console.log('data:', data);
+          onDismiss(result);
+        }
+      });
+    
+      await modal.present();
   }
+
+
 
   onNewPlace() {
     this.presentForm(null, (result) => {
@@ -99,6 +97,8 @@ export class AddplacePage implements OnInit {
     this._places.complete(); // cerrando el observador
   }
 
+
+
   public loadPlaces(userId:number){
     this.PlaceService.getAllById(userId).subscribe(
       data => {
@@ -113,24 +113,34 @@ export class AddplacePage implements OnInit {
   }
 
   onEditPlace(place:Place){
-    var _place: Place = { ...place };
-  this.PlaceService.updatePlace(_place).subscribe(
-    {
-      next: () => {
-        const options: ToastOptions = {
-          message: `Place edited`,
-          duration: 2000,
-          position: 'bottom',
-          color: 'success',
-        };
-        this.toast.create(options).then(toast => toast.present());
-      },
-      error: err => {
-        console.log(err);
-      }
-    }
-  );
+    this.presentForm(null, (result) => {
+      if (result && result.data) {
+        dataURLtoBlob(result.data.photo, (blob:Blob)=>{
+          this.media.upload(blob).subscribe((media:number[])=>{
+            result.data.photo = media[0];
+            this.PlaceService.updatePlace(result.data).subscribe(_ => {
+              this._places.next(result); //quitar pq no se si funciona // no me funcionaba pq no le hacia el next y no lo cerraba el observador
+              console.log('Result of add new place', result);
+              this.toast.create({
+                message: 'Place modified successfully',
+                duration: 2000,
+                position: 'top',
+                color: 'success'
+              }).then(toast => {
+                toast.present();
+              });
+            });
+          }
+          )}
+      )}
+    });
+    this._places.complete();
   }
+
+
+
+
+
   
   onDeletePlace(place: Place) {
     var _place: Place = {...place};
@@ -149,6 +159,4 @@ export class AddplacePage implements OnInit {
         }
       });
   }
-
-
 }

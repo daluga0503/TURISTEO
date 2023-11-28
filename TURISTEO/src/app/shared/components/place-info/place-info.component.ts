@@ -9,6 +9,7 @@ import { Place } from 'src/app/core/models/place';
 export class PlaceInfoComponent  implements OnInit {
 
   @Input() place:Place | null=null;
+  @Input() showButtons: boolean = true;
 
   @Output() editClicked:EventEmitter<Place> = new EventEmitter<Place>();
   @Output() deleteClicked:EventEmitter<Place> = new EventEmitter<Place>();

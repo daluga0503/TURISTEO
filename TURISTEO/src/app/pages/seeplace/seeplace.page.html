@@ -3,6 +3,7 @@
         <app-place-info
         *ngFor="let place of places$ | async; let i = index"
         [place]="place"
+        [showButtons]="false"
         >
         </app-place-info>
     </div>

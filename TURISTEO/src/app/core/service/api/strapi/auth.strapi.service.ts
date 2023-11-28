@@ -32,16 +32,21 @@ export class AuthStrapiService extends AuthService{
     );
     */
     try {
+      // si hay token se almacenará
       const token = await lastValueFrom(this.jwtSvc.loadToken());
       if (token) {
+        //obtienen la infotmación del usuario
         const user = await lastValueFrom(this.me());
+        //informamos al behavoiur que hay una modificación 
         this._logged.next(true);
         this._userIdSubject.next(user.id);
       } else {
+        // si no hay token declaramos que no se ha podido realizar el logueo
         this._logged.next(false);
         this._userIdSubject.next(null);
       }
     } catch (error) {
+      // en caso de error se establece como que tampoco se ha podido loguear.
       console.error('Error during initialization:', error);
       this._logged.next(false);
       this._userIdSubject.next(null);

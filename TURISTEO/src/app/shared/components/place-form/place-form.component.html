@@ -1,7 +1,5 @@
 <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="form-place">
   <ion-list>
-
-
         
     <app-picture-selectable formControlName="photo"></app-picture-selectable>
 
@@ -26,6 +24,6 @@
         </ion-select>
     </ion-item>
 
-    <ion-button type="submit" expand="block" [disabled]="!form.dirty">Crear Lugar</ion-button>
+    <ion-button type="submit" [disabled]="!form.valid || !form.dirty" class="ion-padding" expand="full" (click)="onSubmit()">{{(mode=='New'?'Crear':'Guardar')}}</ion-button>
   </ion-list>
 </form>

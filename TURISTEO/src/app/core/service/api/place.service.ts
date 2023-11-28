@@ -45,7 +45,7 @@ import { AuthService } from "./auth.service";
       */
 
       addPlace(place: Place): Observable<Place> {
-        return this.auth.isLogged$.pipe(
+        return this.auth.userId$.pipe(
           take(1), //probar sin el take
           switchMap(userId => {
             if (!userId) {
@@ -99,7 +99,7 @@ import { AuthService } from "./auth.service";
     }
 
     public updatePlace(place: Place): Observable<Place> {
-      return this.api.put(`sitios/${place.placeId}`, place).pipe(
+      return this.api.put(`/sitios/${place.placeId}`,place).pipe(
       map(response => this.mapToPlace(response))
       );
   }

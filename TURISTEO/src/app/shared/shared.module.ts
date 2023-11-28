@@ -13,6 +13,7 @@ import { PlaceFormComponent } from './components/place-form/place-form.component
 import { PictureSelectableComponent } from './components/picture-selectable/picture-selectable.component';
 import { TypePlaceSelectorComponent } from './components/type-place-selector/type-place-selector.component';
 import { PlaceInfoComponent } from './components/place-info/place-info.component';
+import { EditDeleteButtonsComponent } from './components/edit-delete-buttons/edit-delete-buttons.component';
 
 
 
@@ -25,7 +26,8 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
     PlaceFormComponent,
     PictureSelectableComponent,
     TypePlaceSelectorComponent,
-    PlaceInfoComponent
+    PlaceInfoComponent,
+    EditDeleteButtonsComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
     PlaceFormComponent,
     PictureSelectableComponent,
     TypePlaceSelectorComponent,
-    PlaceInfoComponent
+    PlaceInfoComponent,
+    EditDeleteButtonsComponent
   ]
 })
 export class SharedModule { }

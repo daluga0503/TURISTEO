@@ -15,11 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'addplace',
-    loadChildren: () => import('./pages/addplace/addplace.module').then( m => m.AddplacePageModule)
+    loadChildren: () => import('./pages/addplace/addplace.module').then( m => m.AddplacePageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'seeplace',
-    loadChildren: () => import('./pages/seeplace/seeplace.module').then( m => m.SeeplacePageModule)
+    loadChildren: () => import('./pages/seeplace/seeplace.module').then( m => m.SeeplacePageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'login',

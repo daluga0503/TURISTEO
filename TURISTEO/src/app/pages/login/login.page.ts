@@ -16,11 +16,12 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+
+
   onLogin(credentials:UserCredentials){
     this.auth.login(credentials).subscribe({
       next:data=>{
         console.log('data:', data);
-        console.log('Data login : ', data);
       },
       error:err =>{
         console.log(err);

@@ -19,7 +19,6 @@ export interface Place {
 export interface Attributes {
     name: string;
     city: string;
-    photo: string; // Ajusta el tipo según tu estructura
-    typePlace: string; // Ajusta el tipo según tu estructura
-    // Agrega las demás propiedades si es necesario
-  }
+    photo: string;
+    typePlace: TypePlace;
+}

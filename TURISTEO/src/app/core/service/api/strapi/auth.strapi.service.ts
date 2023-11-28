@@ -1,4 +1,4 @@
-import { Observable, lastValueFrom, map } from 'rxjs';
+import { BehaviorSubject, Observable, lastValueFrom, map } from 'rxjs';
 import { JwtService } from '../../jwt.service';
 import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
@@ -18,7 +18,8 @@ export class AuthStrapiService extends AuthService{
     this.init();
   }
 
-  private init(){
+  private async init(){
+    /*
     this.jwtSvc.loadToken().subscribe(
       {
         next:(logged)=>{
@@ -29,6 +30,22 @@ export class AuthStrapiService extends AuthService{
         }
       }      
     );
+    */
+    try {
+      const token = await lastValueFrom(this.jwtSvc.loadToken());
+      if (token) {
+        const user = await lastValueFrom(this.me());
+        this._logged.next(true);
+        this._userIdSubject.next(user.id);
+      } else {
+        this._logged.next(false);
+        this._userIdSubject.next(null);
+      }
+    } catch (error) {
+      console.error('Error during initialization:', error);
+      this._logged.next(false);
+      this._userIdSubject.next(null);
+    }
   }
 
   public login(credentials:UserCredentials):Observable<void>{
@@ -40,6 +57,7 @@ export class AuthStrapiService extends AuthService{
       this.apiSvc.post("/auth/local", _credentials).subscribe({
         next:async (data:StrapiLoginResponse)=>{
           await lastValueFrom(this.jwtSvc.saveToken(data.jwt));
+          this._userIdSubject.next(data.user.id); // cojo el Id y lo emito al behaviur subject
           this._logged.next(data && data.jwt!='');
           obs.next();
           obs.complete();
@@ -54,6 +72,7 @@ export class AuthStrapiService extends AuthService{
   logout():Observable<void>{
     return this.jwtSvc.destroyToken().pipe(map(_=>{
       this._logged.next(false);
+      this._userIdSubject.next(null); //reinicio el id del usuario
       return;
     }));
   }
@@ -87,12 +106,12 @@ export class AuthStrapiService extends AuthService{
       });
     });
   }
-
+  /*
   public me():Observable<User>{
     return new Observable<User>(obs=>{
       this.apiSvc.get('/users/me').subscribe({
         next:async (user:StrapiMe)=>{
-          let extended_user:StrapiArrayResponse<StrapiExtendedUser> = await lastValueFrom(this.apiSvc.get(`/extended_user?filters[user_id]=${user.id}`));
+          let extended_user:StrapiArrayResponse<StrapiExtendedUser> = await lastValueFrom(this.apiSvc.get(`/extended-users?filters[users_permissions_user]=${user.id}`));//he cambiado el []
           let ret:User = {
             id:user.id,
             name:extended_user.data[0].attributes.data.name,
@@ -108,4 +127,48 @@ export class AuthStrapiService extends AuthService{
       });
     });
   }
+  */
+
+  
+  public me(): Observable<User> {
+    return new Observable<User>(obs => {
+      this.apiSvc.get('/users/me').subscribe({
+        next: async (user: StrapiMe) => {
+          try {
+            let extended_user: StrapiArrayResponse<StrapiExtendedUser> = await lastValueFrom(this.apiSvc.get(`/extended-users?filters[users_permissions_user]=${user.id}`));
+  
+            // Comprobar si hay datos, atributos y datos extendidos antes de acceder a ellos
+            if (
+              extended_user &&
+              extended_user.data &&
+              extended_user.data.length > 0 &&
+              extended_user.data[0].attributes &&
+              extended_user.data[0].attributes.data
+            ) {
+              let ret: User = {
+                id: user.id,
+                name: extended_user.data[0].attributes.data.name || '',
+                surname: extended_user.data[0].attributes.data.surname || '',
+                nickname: extended_user.data[0].attributes.data.nickname || ''
+              };
+  
+              obs.next(ret);
+              obs.complete();
+            } else {
+              // Manejar el caso en el que no se encuentran datos válidos
+              obs.error("Extended user data not found or incomplete.");
+            }
+          } catch (error) {
+            obs.error(error);
+          }
+        },
+        error: err => {
+          obs.error(err);
+        }
+      });
+    });
+  }
+  
+  
+
 }

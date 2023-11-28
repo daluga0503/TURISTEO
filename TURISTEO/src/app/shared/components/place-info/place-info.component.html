@@ -13,4 +13,10 @@
         </ion-row>
     </ion-grid>
   </ion-card-content>
+  <app-edit-delete-buttons 
+  *ngIf="place" 
+  [place]="place"
+  (deleteClick)="onDeleteClick($event)"
+  (editClick)="onEditClick($event)"
+  ></app-edit-delete-buttons>
 </ion-card>

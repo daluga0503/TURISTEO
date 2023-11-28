@@ -2,5 +2,13 @@
     <ion-button fill="clear" aria-label="New Place"  class="rounde" class="custom-margin" (click)="onNewPlace()">
         <ion-icon slot="icon-only"  color="primary"  name="create-outline" aria-hidden="true"></ion-icon>
     </ion-button>
+
+    <app-place-info
+        *ngFor="let place of places$ | async; let i = index"
+        [place]="place"
+        (editClicked)="onEditPlace(place)"
+        (deleteClicked)="onDeletePlace(place)"
+        >
+        </app-place-info>
 </ion-content>
 

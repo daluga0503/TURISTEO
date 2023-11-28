@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Place } from 'src/app/core/models/place';
 
 @Component({
@@ -10,8 +10,19 @@ export class PlaceInfoComponent  implements OnInit {
 
   @Input() place:Place | null=null;
 
+  @Output() editClicked:EventEmitter<Place> = new EventEmitter<Place>();
+  @Output() deleteClicked:EventEmitter<Place> = new EventEmitter<Place>();
+
   constructor() { }
 
   ngOnInit() {}
+
+  onEditClick(event:any) {
+    this.editClicked.emit(event);
+  }
+
+  onDeleteClick(event:any) {
+    this.deleteClicked.emit(event);
+  }
 
 }

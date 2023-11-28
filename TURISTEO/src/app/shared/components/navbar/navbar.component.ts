@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/service/api/auth.service';
 import { LanguageService } from 'src/app/core/service/lenguage.service';
 
 @Component({
@@ -10,12 +11,14 @@ import { LanguageService } from 'src/app/core/service/lenguage.service';
 export class NavbarComponent  implements OnInit {
 
 
+
   //asigno el español como idioma seleccionado
   selectedLenguage:string='es';
 
   constructor(
     private router:Router,
     private translate: LanguageService,
+    private auth:AuthService
   ) {
     //español como idioma por defecto
     this.translate.defaultLang(this.selectedLenguage);
@@ -23,7 +26,7 @@ export class NavbarComponent  implements OnInit {
   }
 
   ngOnInit() {}
-
+  
 
   public onChangeLanguage(event: any){
     //el idioma seleccionado se iguala al valor seleccionado del evento

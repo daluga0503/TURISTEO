@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController, ToastController } from '@ionic/angular';
+import { ModalController, PopoverController, ToastController, ToastOptions } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { dataURLtoBlob } from 'src/app/core/helpers/blob';
 import { Place } from 'src/app/core/models/place';
+import { User } from 'src/app/core/models/user';
+import { AuthService } from 'src/app/core/service/api/auth.service';
 import { MediaService } from 'src/app/core/service/api/media.service';
 import { PlaceService } from 'src/app/core/service/api/place.service';
+import { AuthStrapiService } from 'src/app/core/service/api/strapi/auth.strapi.service';
 import { UsersService } from 'src/app/core/service/api/users.service';
 import { PlaceFormComponent } from 'src/app/shared/components/place-form/place-form.component';
 
@@ -20,17 +23,37 @@ export class AddplacePage implements OnInit {
 
 
 
+
   constructor(
     private toast:ToastController,
     public users:UsersService,
     private PlaceService: PlaceService,
     private modal:ModalController,
-    private media:MediaService
+    private media:MediaService,
+    private auth:AuthService
   ) { }
 
+
+
+
+
   ngOnInit() {
-    
+
+    this.auth.userId$.subscribe(userId => {
+      if (userId !== null) {
+        this.loadPlaces(userId);
+      }
+    });
+    /*
+    if(this.auth.id!=undefined){
+    this.loadPlaces(this.auth.id);
+    }*/
   }
+
+  
+
+
+
 
   async presentForm(data: Place | null, onDismiss: (result: any) => void) {
     const modal = await this.modal.create({
@@ -75,5 +98,57 @@ export class AddplacePage implements OnInit {
     });
     this._places.complete(); // cerrando el observador
   }
+
+  public loadPlaces(userId:number){
+    this.PlaceService.getAllById(userId).subscribe(
+      data => {
+        console.log('Data loaded successfully:', data);
+        this._places.next(data);
+        this._places.complete();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onEditPlace(place:Place){
+    var _place: Place = { ...place };
+  this.PlaceService.updatePlace(_place).subscribe(
+    {
+      next: () => {
+        const options: ToastOptions = {
+          message: `Place edited`,
+          duration: 2000,
+          position: 'bottom',
+          color: 'success',
+        };
+        this.toast.create(options).then(toast => toast.present());
+      },
+      error: err => {
+        console.log(err);
+      }
+    }
+  );
+  }
+  
+  onDeletePlace(place: Place) {
+    var _place: Place = {...place};
+    this.PlaceService.deletePlace(_place).subscribe(
+      {next: place =>{
+        const options:ToastOptions = {
+          message: `Place deleted`,
+          duration:2000,
+          position:'bottom',
+          color:'danger',
+        };
+        this.toast.create(options).then(toast=>toast.present());
+        },
+        error(err) {
+            console.log(err);
+        }
+      });
+  }
+
 
 }

@@ -98,10 +98,9 @@ import { AuthService } from "./auth.service";
         return this.api.get('/sitios?q='+q)
     }
 
-    public updatePlace(place: Place): Observable<Place> {
-      return this.api.put(`/sitios/${place.placeId}`,place).pipe(
-      map(response => this.mapToPlace(response))
-      );
+    public updatePlace(place: Place, id: number | undefined): Observable<Place> {
+      const updatedPlace = this.mapToPlaceUpdate(place)
+      return this.api.put(`/sitios/${id}`,updatedPlace);
   }
 
   public deletePlace(place: Place): Observable<void> {
@@ -118,5 +117,18 @@ import { AuthService } from "./auth.service";
             photo: data.photo,
             typePlace: data.typePlace,
         };
+    }
+
+    private mapToPlaceUpdate(sitio: any): any {
+      const place = {data: {
+          placeId: sitio.id,
+          name:sitio.name,
+          city: sitio.city,
+          photo: sitio.photo,
+          typePlace: sitio.typePlace,
+        }
+        
+      }
+      return place;
     }
 }

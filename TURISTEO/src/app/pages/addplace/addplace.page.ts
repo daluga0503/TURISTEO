@@ -113,12 +113,12 @@ export class AddplacePage implements OnInit {
   }
 
   onEditPlace(place:Place){
-    this.presentForm(null, (result) => {
+    this.presentForm(place, (result) => {
       if (result && result.data) {
         dataURLtoBlob(result.data.photo, (blob:Blob)=>{
           this.media.upload(blob).subscribe((media:number[])=>{
             result.data.photo = media[0];
-            this.PlaceService.updatePlace(result.data).subscribe(_ => {
+            this.PlaceService.updatePlace(result.data, place.placeId).subscribe(_ => {
               this._places.next(result); //quitar pq no se si funciona // no me funcionaba pq no le hacia el next y no lo cerraba el observador
               console.log('Result of add new place', result);
               this.toast.create({

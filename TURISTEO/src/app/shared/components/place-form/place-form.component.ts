@@ -9,13 +9,21 @@ import { Place } from 'src/app/core/models/place';
   styleUrls: ['./place-form.component.scss'],
 })
 export class PlaceFormComponent  implements OnInit {
-  form:FormGroup|null=null;
+  form:FormGroup;
   mode:'New'|'Edit' = 'New';
 
-  @Input() place:Place|null=null;
+  //@Input() place: Place|null=null;
 
-
-  ngOnInit(): void {}
+  @Input() set place(_place:Place |null){
+    console.log(this.place);
+    if(_place){
+      this.mode='Edit';
+      this.form?.controls['name'].setValue(_place.name);
+      this.form?.controls['photo'].setValue(_place.photo);
+      this.form?.controls['city'].setValue(_place.city);
+      this.form?.controls['typePlace'].setValue(_place.typePlace);
+    }
+  }
 
   constructor(
     private formBuilder:FormBuilder,
@@ -29,23 +37,10 @@ export class PlaceFormComponent  implements OnInit {
     })
   }
 
-  getDirtyValues(form: FormGroup) {
-    let dirtyValues:any = {};
-
-    Object.keys(form.controls)
-        .forEach(key => {
-            let currentControl = form.controls[key];
-            if (currentControl.dirty)
-              dirtyValues[key] = currentControl.value;
-        });
-    if(this.mode=='Edit' && this.form!=null)
-        dirtyValues['id'] = this.form.controls['id'].value;
-    return dirtyValues;
-  }
-
+  ngOnInit(): void {}
 
 
   onSubmit(){
-    this._modal.dismiss(this.getDirtyValues(this.form!!), 'ok');
+    this._modal.dismiss((this.form.value), 'ok')   
   }
 }

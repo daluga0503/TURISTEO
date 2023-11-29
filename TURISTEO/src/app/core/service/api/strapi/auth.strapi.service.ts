@@ -19,7 +19,7 @@ export class AuthStrapiService extends AuthService{
   }
 
   private async init(){
-    /*
+    
     this.jwtSvc.loadToken().subscribe(
       {
         next:(logged)=>{
@@ -30,7 +30,8 @@ export class AuthStrapiService extends AuthService{
         }
       }      
     );
-    */
+    
+   /*
     try {
       // si hay token se almacenará
       const token = await lastValueFrom(this.jwtSvc.loadToken());
@@ -51,6 +52,7 @@ export class AuthStrapiService extends AuthService{
       this._logged.next(false);
       this._userIdSubject.next(null);
     }
+    */
   }
 
   public login(credentials:UserCredentials):Observable<void>{

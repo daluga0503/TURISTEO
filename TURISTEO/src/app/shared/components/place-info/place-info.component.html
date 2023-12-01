@@ -1,5 +1,10 @@
 <ion-card>
   <ion-card-content class="place-card-content">
+    <app-fav-buttons
+    *ngIf="place && favButton"
+    [place]="place"
+    (favClick)="onFavClick($event)"
+    ></app-fav-buttons>
     <div class="place-info">
       <img [src]="place?.photo" alt="Place Photo" class="place-photo" />
       <div class="place-details">

@@ -13,6 +13,7 @@ import { PlaceService } from 'src/app/core/service/api/place.service';
 export class SeeplacePage implements OnInit {
 
   showButtons = false;
+  favButtons = true;
 
   constructor(
     public placeSvc: PlaceService) { } 

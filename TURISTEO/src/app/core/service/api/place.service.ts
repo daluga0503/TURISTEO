@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, switchMap, take, tap, throwError } from "rxjs";
+import { BehaviorSubject, Observable, map, of, switchMap, take, tap, throwError } from "rxjs";
 import { Attributes, Place } from "../../models/place";
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
@@ -43,11 +43,10 @@ import { AuthService } from "./auth.service";
             }
           )
         );
-      }
-    }
-      */
-
-      addPlace(place: Place): Observable<Place> {
+      }*/
+    
+      /*
+    public addPlace(place: Place): Observable<Place> {
         return this.auth.userId$.pipe(
           take(1), //probar sin el take
           switchMap(userId => {
@@ -66,8 +65,39 @@ import { AuthService } from "./auth.service";
             });
           }),
         );
+      }*/
+
+      public addPlace(place: Place, userId: number): Observable<Place> {
+        if (!userId) {
+          throw new Error('User ID not available');
+        }
+      
+        return this.api.post("/sitios", {
+          data: {
+            userId: userId,
+            name: place.name,
+            photo: place.photo,
+            city: place.city,
+            typePlace: place.typePlace
+          },
+        }).pipe(
+          map( response => {
+            const addedPlace = response.data;
+              const updatedPlaces = [...this._places.value, addedPlace];
+
+              // Notificar a los observadores sobre la lista completa de lugares actualizada
+              this._places.next(updatedPlaces);
+
+              // Actualizar personalPlaces$ con la lista actualizada para userId
+              this.getAllById(userId).subscribe();
+
+              // Notificar a los observadores sobre el lugar recién agregado
+              return addedPlace;
+          })
+        );
       }
 
+      
       
       public getAll(): Observable<Place[]> {
         return this.api.get('/sitios').pipe(
@@ -92,11 +122,6 @@ import { AuthService } from "./auth.service";
         );
       }
 
-    public query(q:string):Observable<Place[]>{
-        return this.api.get('/sitios?q='+q)
-    }
-
-  
     public updatePlace(place: Place, id: number | undefined, userId: number): Observable<Place> {
       const updatedPlace = this.mapToPlaceUpdate(place)
       return this.api.put(`/sitios/${id}`,updatedPlace).pipe(
@@ -111,10 +136,6 @@ import { AuthService } from "./auth.service";
       );
   }
 
-
-
-
-  
 
     private mapToPlace(data: any): Place {
         return {

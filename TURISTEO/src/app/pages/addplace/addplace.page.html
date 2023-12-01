@@ -4,10 +4,11 @@
     </ion-button>
 
     <app-place-info
-        *ngFor="let place of PlaceService.personalPlaces$ |async ; let i = index"
+        *ngFor="let place of PlaceService.personalPlaces$ | async ; let i = index"
         [place]="place"
         (editClicked)="onEditPlace(place)"
         (deleteClicked)="onDeletePlace(place)"
+        [favButton]="false"
         >
         </app-place-info>
 </ion-content>

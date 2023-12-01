@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'about-me',
     loadChildren: () => import('./pages/about-me/about-me.module').then( m => m.AboutMePageModule)
   },
+  {
+    path: 'see-favs',
+    loadChildren: () => import('./pages/see-favs/see-favs.module').then( m => m.SeeFavsPageModule)
+  },
 ];
 
 @NgModule({

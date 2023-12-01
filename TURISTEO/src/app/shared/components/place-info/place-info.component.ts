@@ -10,9 +10,11 @@ export class PlaceInfoComponent  implements OnInit {
 
   @Input() place:Place | null=null;
   @Input() showButtons: boolean = true;
+  @Input() favButton: boolean = true;
 
   @Output() editClicked:EventEmitter<Place> = new EventEmitter<Place>();
   @Output() deleteClicked:EventEmitter<Place> = new EventEmitter<Place>();
+  @Output() favClick:EventEmitter<Place> = new EventEmitter<Place>()
 
   constructor() { }
 
@@ -24,6 +26,10 @@ export class PlaceInfoComponent  implements OnInit {
 
   onDeleteClick(event:any) {
     this.deleteClicked.emit(event);
+  }
+
+  onFavClick(event:any){
+    this.favClick.emit(event);
   }
 
 }

@@ -4,6 +4,7 @@
         *ngFor="let place of placeSvc.places$ | async; let i = index"
         [place]="place"
         [showButtons]="false"
+        [favButton]="true"
         >
         </app-place-info>
     </div>

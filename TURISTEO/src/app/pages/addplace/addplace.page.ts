@@ -19,10 +19,8 @@ import { PlaceFormComponent } from 'src/app/shared/components/place-form/place-f
 export class AddplacePage implements OnInit {
 
 
-  arraySitios:Place[] = []; 
-
-
   showButtons = true;
+  favButton = false;
 
   private id = 0;
 
@@ -79,7 +77,7 @@ export class AddplacePage implements OnInit {
         dataURLtoBlob(result.data.photo, (blob:Blob)=>{
           this.media.upload(blob).subscribe((media:number[])=>{
             result.data.photo = media[0];
-            this.PlaceService.addPlace(result.data).subscribe(_ => { 
+            this.PlaceService.addPlace(result.data, this.id).subscribe(_ => {
               console.log('Result of add new place', result);
               this.toast.create({
                 message: 'Place added successfully',
@@ -100,12 +98,13 @@ export class AddplacePage implements OnInit {
     this.PlaceService.getAllById(userId).subscribe(
       data => {
         console.log('Data loaded successfully:', data);
+        
       },
       error => {
         console.log(error);
       }
     )
-  }
+}
 
 
   
@@ -140,7 +139,7 @@ export class AddplacePage implements OnInit {
         const options:ToastOptions = {
           message: `Place deleted`,
           duration:2000,
-          position:'bottom',
+          position:'top',
           color:'danger',
         };
         this.toast.create(options).then(toast=>toast.present());

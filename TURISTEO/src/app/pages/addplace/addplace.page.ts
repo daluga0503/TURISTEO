@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ModalController, PopoverController, ToastController, ToastOptions } from '@ionic/angular';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import { dataURLtoBlob } from 'src/app/core/helpers/blob';
 import { Place } from 'src/app/core/models/place';
 import { User } from 'src/app/core/models/user';
@@ -18,26 +18,29 @@ import { PlaceFormComponent } from 'src/app/shared/components/place-form/place-f
 })
 export class AddplacePage implements OnInit {
 
-  private _places = new BehaviorSubject<Place[]>([]);
-  public places$ = this._places.asObservable();
+
+  arraySitios:Place[] = []; 
+
 
   showButtons = true;
+
+  private id = 0;
 
 
   constructor(
     private toast:ToastController,
     public users:UsersService,
-    private PlaceService: PlaceService,
+    public PlaceService: PlaceService,
     private modal:ModalController,
     private media:MediaService,
     private auth:AuthService
   ) { }
 
-
   ngOnInit() {
     this.auth.userId$.subscribe(userId => {
       if (userId !== null) {
         this.loadPlaces(userId);
+        this.id = userId;
       }
     });
     /*
@@ -45,8 +48,6 @@ export class AddplacePage implements OnInit {
     this.loadPlaces(this.auth.id);
     }*/
   }
-
-  
 
 
 
@@ -78,12 +79,11 @@ export class AddplacePage implements OnInit {
         dataURLtoBlob(result.data.photo, (blob:Blob)=>{
           this.media.upload(blob).subscribe((media:number[])=>{
             result.data.photo = media[0];
-            this.PlaceService.addPlace(result.data).subscribe(_ => {
-              this._places.next(result); //quitar pq no se si funciona // no me funcionaba pq no le hacia el next y no lo cerraba el observador
+            this.PlaceService.addPlace(result.data).subscribe(_ => { 
               console.log('Result of add new place', result);
               this.toast.create({
                 message: 'Place added successfully',
-                duration: 2000,
+                duration: 1000,
                 position: 'top',
                 color: 'success'
               }).then(toast => {
@@ -94,17 +94,12 @@ export class AddplacePage implements OnInit {
           )}
       )}
     });
-    this._places.complete(); // cerrando el observador
   }
-
-
 
   public loadPlaces(userId:number){
     this.PlaceService.getAllById(userId).subscribe(
       data => {
         console.log('Data loaded successfully:', data);
-        this._places.next(data);
-        this._places.complete();
       },
       error => {
         console.log(error);
@@ -112,14 +107,15 @@ export class AddplacePage implements OnInit {
     )
   }
 
+
+  
   onEditPlace(place:Place){
     this.presentForm(place, (result) => {
       if (result && result.data) {
         dataURLtoBlob(result.data.photo, (blob:Blob)=>{
           this.media.upload(blob).subscribe((media:number[])=>{
             result.data.photo = media[0];
-            this.PlaceService.updatePlace(result.data, place.placeId).subscribe(_ => {
-              this._places.next(result); //quitar pq no se si funciona // no me funcionaba pq no le hacia el next y no lo cerraba el observador
+            this.PlaceService.updatePlace(result.data, place.placeId, this.id ).subscribe(_ => {
               console.log('Result of add new place', result);
               this.toast.create({
                 message: 'Place modified successfully',
@@ -134,17 +130,12 @@ export class AddplacePage implements OnInit {
           )}
       )}
     });
-    this._places.complete();
   }
 
 
-
-
-
-  
-  onDeletePlace(place: Place) {
+  onDeletePlace(place: Place){
     var _place: Place = {...place};
-    this.PlaceService.deletePlace(_place).subscribe(
+    this.PlaceService.deletePlace(_place, this.id).subscribe(
       {next: place =>{
         const options:ToastOptions = {
           message: `Place deleted`,
@@ -155,8 +146,9 @@ export class AddplacePage implements OnInit {
         this.toast.create(options).then(toast=>toast.present());
         },
         error(err) {
-            console.log(err);
+          console.log(err);
         }
       });
+    }
+    
   }
-}

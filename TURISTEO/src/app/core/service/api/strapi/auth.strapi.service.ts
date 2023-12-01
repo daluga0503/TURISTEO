@@ -26,12 +26,12 @@ export class AuthStrapiService extends AuthService{
           this._logged.next(logged!='');
         },
         error:(err)=>{
-          console.log("No hay token");
+          console.log("No hay token", err);
         }
       }      
     );
-    
-   /*
+
+    /*
     try {
       // si hay token se almacenará
       const token = await lastValueFrom(this.jwtSvc.loadToken());

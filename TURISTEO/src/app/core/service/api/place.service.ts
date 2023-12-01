@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, switchMap, take, tap } from "rxjs";
+import { BehaviorSubject, Observable, map, switchMap, take, tap, throwError } from "rxjs";
 import { Attributes, Place } from "../../models/place";
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
@@ -16,6 +16,9 @@ import { AuthService } from "./auth.service";
 
     private _places: BehaviorSubject<Place[]> = new BehaviorSubject<Place[]>([]);
     public places$: Observable<Place[]> = this._places.asObservable();
+
+    private _personalPlaces: BehaviorSubject<Place[]> = new BehaviorSubject<Place[]>([]);
+    public personalPlaces$: Observable<Place[]> = this._personalPlaces.asObservable();
 
     /*
     public addPlace(place: Place): Observable<Place> {
@@ -62,18 +65,10 @@ import { AuthService } from "./auth.service";
               },
             });
           }),
-          tap(
-            (response: any) => {
-              console.log('Response from addPlace:', response);
-            },
-            (error) => {
-              console.error('Error in addPlace:', error);
-            }
-          )
         );
       }
-      
 
+      
       public getAll(): Observable<Place[]> {
         return this.api.get('/sitios').pipe(
           map(response => {
@@ -84,12 +79,15 @@ import { AuthService } from "./auth.service";
         );
       }
 
+
+
       getAllById(userId: number): Observable<Place[]> {
         return this.api.get(`/sitios?filters[userId]=${userId}`).pipe(
           map(response => {
-            const places = response.data.map(({ id, attributes }: { id: number, attributes: Attributes }) => this.mapToPlace({ id, ...attributes }));
-            this._places.next(places);
-            return places;
+            const personalPlaces = response.data.map(({ id, attributes }: { id: number, attributes: Attributes }) => this.mapToPlace({ id, ...attributes }));
+            this._personalPlaces.next(personalPlaces);
+            console.log(this._personalPlaces.value)
+            return personalPlaces;
           })
         );
       }
@@ -98,16 +96,25 @@ import { AuthService } from "./auth.service";
         return this.api.get('/sitios?q='+q)
     }
 
-    public updatePlace(place: Place, id: number | undefined): Observable<Place> {
+  
+    public updatePlace(place: Place, id: number | undefined, userId: number): Observable<Place> {
       const updatedPlace = this.mapToPlaceUpdate(place)
-      return this.api.put(`/sitios/${id}`,updatedPlace);
-  }
-
-  public deletePlace(place: Place): Observable<void> {
-      return this.api.delete(`/sitios/${place.placeId}`).pipe(
-      tap(_ => this.getAll().subscribe())
+      return this.api.put(`/sitios/${id}`,updatedPlace).pipe(
+        tap(_ => {this.getAllById(userId).subscribe(), this.getAll().subscribe()})
       );
   }
+
+
+  public deletePlace(place: Place, userId:number): Observable<void> {
+    return this.api.delete(`/sitios/${place.placeId}`).pipe(
+      tap(_ =>{this.getAll().subscribe(), this.getAllById(userId).subscribe()})
+      );
+  }
+
+
+
+
+  
 
     private mapToPlace(data: any): Place {
         return {

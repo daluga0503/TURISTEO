@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="false">
     <div class="custom-margin">
         <app-place-info
-        *ngFor="let place of places$ | async; let i = index"
+        *ngFor="let place of placeSvc.places$ | async; let i = index"
         [place]="place"
         [showButtons]="false"
         >

@@ -14,7 +14,7 @@ export class PlaceInfoComponent  implements OnInit {
 
   @Output() editClicked:EventEmitter<Place> = new EventEmitter<Place>();
   @Output() deleteClicked:EventEmitter<Place> = new EventEmitter<Place>();
-  @Output() favClick:EventEmitter<Place> = new EventEmitter<Place>()
+  @Output() onFavClicked:EventEmitter<Place> = new EventEmitter<Place>()
 
   constructor() { }
 
@@ -29,7 +29,7 @@ export class PlaceInfoComponent  implements OnInit {
   }
 
   onFavClick(event:any){
-    this.favClick.emit(event);
+    this.onFavClicked.emit(event);
   }
 
 }

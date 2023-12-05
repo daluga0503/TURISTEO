@@ -15,6 +15,7 @@ import { TypePlaceSelectorComponent } from './components/type-place-selector/typ
 import { PlaceInfoComponent } from './components/place-info/place-info.component';
 import { EditDeleteButtonsComponent } from './components/edit-delete-buttons/edit-delete-buttons.component';
 import { FavButtonsComponent } from './components/fav-buttons/fav-buttons.component';
+import { PlaceFavComponent } from './components/place-fav/place-fav.component';
 
 
 
@@ -29,7 +30,8 @@ import { FavButtonsComponent } from './components/fav-buttons/fav-buttons.compon
     TypePlaceSelectorComponent,
     PlaceInfoComponent,
     EditDeleteButtonsComponent,
-    FavButtonsComponent
+    FavButtonsComponent,
+    PlaceFavComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { FavButtonsComponent } from './components/fav-buttons/fav-buttons.compon
     TypePlaceSelectorComponent,
     PlaceInfoComponent,
     EditDeleteButtonsComponent,
-    FavButtonsComponent
+    FavButtonsComponent,
+    PlaceFavComponent
   ]
 })
 export class SharedModule { }

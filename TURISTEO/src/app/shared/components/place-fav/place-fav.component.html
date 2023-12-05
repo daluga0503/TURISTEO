@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-card-content>
+    <div class="place-info">
+      <img [src]="favPlace?.sitiosId?.photo" alt="Place Photo" class="place-photo" />
+      <div class="place-details">
+        <ion-card-title>{{ favPlace?.sitiosId?.name }}</ion-card-title>
+        <ion-card-subtitle>{{ favPlace?.sitiosId?.city }}</ion-card-subtitle>
+        <ion-card-subtitle>{{ favPlace?.sitiosId?.typePlace }}</ion-card-subtitle>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

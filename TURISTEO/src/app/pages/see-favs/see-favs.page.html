@@ -1,13 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>seeFavs</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">seeFavs</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="false">
+  <div class="custom-margin">
+      <app-place-fav
+      *ngFor="let favPlace of favSvc.fav$ | async; let i = index"
+      [favPlace] = "favPlace"
+      >
+      </app-place-fav>
+  </div>
 </ion-content>
+

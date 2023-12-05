@@ -11,7 +11,11 @@ import { favPlaceService } from 'src/app/core/service/api/favPlace.service';
 })
 export class SeeFavsPage implements OnInit {
 
-  private id  = 0;
+
+  //favPlace: favPlace |null = null;
+  favPlace: favPlace[] = [];
+
+  public id  = 0;
 
 
   constructor(
@@ -38,26 +42,6 @@ export class SeeFavsPage implements OnInit {
         console.log(error);
       }
     )
-  }
-
-
-  addFavorite(sitioId: number): void {
-    this.favSvc.addPlaceToFavorites(this.id, sitioId).subscribe(() => {
-      // Puedes actualizar la lista de sitios de interés después de agregar uno
-      this.favSvc.getPlacesInterestByUser(this.id).subscribe(_=> {
-        console.log("Añadido")
-      });
-    });
-  }
-
-
-  deleteFavorite(sitioId: number): void {
-    this.favSvc.deletePlaceFromFavorites(this.id, sitioId).subscribe(() => {
-      // Puedes actualizar la lista de sitios de interés después de agregar uno
-      this.favSvc.getPlacesInterestByUser(this.id).subscribe(_=> {
-        console.log("Eliminado")
-      });
-    });
   }
 
 }

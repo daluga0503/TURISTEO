@@ -3,7 +3,7 @@
         <app-place-info
         *ngFor="let place of placeSvc.places$ | async; let i = index"
         [place]="place"
-        (onFavClicked)="onChangeFavorite(favPlace!!)"
+        (onFavClicked)="onChangeFavorite(place, favPlace!!)"
         [showButtons]="false"
         [favButton]="true"
         >

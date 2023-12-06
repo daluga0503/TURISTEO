@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { favPlace } from 'src/app/core/models/favPlace';
 import { Place } from 'src/app/core/models/place';
 
 @Component({
@@ -9,6 +10,7 @@ import { Place } from 'src/app/core/models/place';
 export class PlaceInfoComponent  implements OnInit {
 
   @Input() place:Place | null=null;
+
   @Input() showButtons: boolean = true;
   @Input() favButton: boolean = true;
 

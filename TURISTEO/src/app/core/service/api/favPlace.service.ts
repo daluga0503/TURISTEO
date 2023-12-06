@@ -23,6 +23,12 @@ export class favPlaceService{
         return this._fav.value.some(fav => fav.usersId === userId && fav.sitiosId.placeId === placeId);
     }
 
+    getFavId(usersId:number, sitiosId:number):Observable<number>{
+        return this.api.get(`/sitio-intereses?filters[users_id]=${usersId}&filters[sitios_id]=${sitiosId}`).pipe(
+            map( response  => response.data?.[0].id)
+        )
+    }
+
     getPlacesInterestByUser(userId: number):Observable<favPlace[]>{
         return this.api.get(`/sitio-intereses?filters[users_id]=${userId}&populate=users_id, sitios_id.photo`).pipe(
             map(response => {
@@ -34,19 +40,30 @@ export class favPlaceService{
         );
     }
 
-    addFavorite(userId:number, placeId:number):Observable<favPlace>{
-        return this.api.post(`/sitios-intereses`, { data: { sitiosId: placeId } }).pipe(
+    /*
+    addFavorite(userId: number, placeId: number): Observable<favPlace> {
+        return this.api.post(`/sitios-intereses`, { data: { users_id: userId, sitios_id: placeId } }).pipe(
             map(response => {
-                const newFavorite = this.mapToFav(response.data);
-                const updatedFavPlaces = [...this._fav.value, newFavorite];
-                this._fav.next(updatedFavPlaces);
-                return newFavorite;
+            const newFavorite = this.mapToFav(response.data);
+            const updatedFavPlaces = [...this._fav.value, newFavorite];
+            this._fav.next(updatedFavPlaces);
+            return newFavorite;
             })
         );
     }
+    */
 
-    deleteFavorite(favplaces:favPlace, userId:number):Observable<void>{
-        return this.api.delete(`/sitios-intereses/${favplaces.idFav}`).pipe(
+    addFavorite(userId: number, placeId: number): Observable<favPlace> {
+        return this.api.post(`/sitio-intereses`, { data: { users_id: userId, sitios_id: placeId } }).pipe(
+            map(response => this.mapToFav(response.data)),
+            tap(newFavorite => {
+            this._fav.next([...this._fav.value, newFavorite]);
+        })
+        );
+    }
+
+    deleteFavorite(userId:number, idFav:number):Observable<void>{
+        return this.api.delete(`/sitio-intereses/${idFav}`).pipe(
             tap(_=>this.getPlacesInterestByUser(userId))
         )
     }

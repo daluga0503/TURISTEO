@@ -5,6 +5,7 @@ import { dataURLtoBlob } from 'src/app/core/helpers/blob';
 import { Place } from 'src/app/core/models/place';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/service/api/auth.service';
+import { favPlaceService } from 'src/app/core/service/api/favPlace.service';
 import { MediaService } from 'src/app/core/service/api/media.service';
 import { PlaceService } from 'src/app/core/service/api/place.service';
 import { AuthStrapiService } from 'src/app/core/service/api/strapi/auth.strapi.service';
@@ -29,6 +30,7 @@ export class AddplacePage implements OnInit {
     private toast:ToastController,
     public users:UsersService,
     public PlaceService: PlaceService,
+    public favPlaceSvc: favPlaceService,
     private modal:ModalController,
     private media:MediaService,
     private auth:AuthService
@@ -81,8 +83,8 @@ export class AddplacePage implements OnInit {
               console.log('Result of add new place', result);
               this.toast.create({
                 message: 'Place added successfully',
-                duration: 1000,
-                position: 'top',
+                duration: 2000,
+                position: 'middle',
                 color: 'success'
               }).then(toast => {
                 toast.present();
@@ -119,7 +121,7 @@ export class AddplacePage implements OnInit {
               this.toast.create({
                 message: 'Place modified successfully',
                 duration: 2000,
-                position: 'top',
+                position: 'middle',
                 color: 'success'
               }).then(toast => {
                 toast.present();
@@ -131,7 +133,7 @@ export class AddplacePage implements OnInit {
     });
   }
 
-
+  
   onDeletePlace(place: Place){
     var _place: Place = {...place};
     this.PlaceService.deletePlace(_place, this.id).subscribe(
@@ -139,7 +141,7 @@ export class AddplacePage implements OnInit {
         const options:ToastOptions = {
           message: `Place deleted`,
           duration:2000,
-          position:'top',
+          position:'middle',
           color:'danger',
         };
         this.toast.create(options).then(toast=>toast.present());
@@ -149,5 +151,49 @@ export class AddplacePage implements OnInit {
         }
       });
     }
+
+    /*
+    public onDeletePlace(place: Place): void {
+      // Verificar si el lugar está en favoritos de cualquier usuario
+      this.favPlaceSvc.getFavId(this.id, place.placeId).subscribe(
+        (idFav: number | null) => {
+          if (idFav !== null) {
+            // Eliminar el lugar de favoritos para cualquier usuario
+            this.favPlaceSvc.deleteFavorite(this.id,idFav).subscribe(
+              () => {
+                console.log('Place removed from favorites for any user.');
+                // Ahora puedes proceder a eliminar el lugar
+                this.PlaceService.deletePlace(place, this.id).subscribe(
+                  () => {
+                    console.log('Place deleted successfully.');
+                  },
+                  error => {
+                    console.error('Error deleting place:', error);
+                  }
+                );
+              },
+              error => {
+                console.error('Error removing place from favorites:', error);
+              }
+            );
+          } else {
+            // Si no se encontró en favoritos de ningún usuario elimina el lugar
+            this.PlaceService.deletePlace(place, this.id).subscribe(
+              () => {
+                console.log('Place deleted successfully.');
+              },
+              error => {
+                console.error('Error deleting place:', error);
+              }
+            );
+          }
+        },
+        error => {
+          console.error('Error getting favId for any user:', error);
+        }
+      );
+    }*/
+
+
     
   }

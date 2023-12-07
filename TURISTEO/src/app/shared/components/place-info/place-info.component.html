@@ -9,8 +9,13 @@
       <img [src]="place?.photo" alt="Place Photo" class="place-photo" />
       <div class="place-details">
         <ion-card-title>{{ place?.name }}</ion-card-title>
-        <ion-card-subtitle>{{ place?.city }}</ion-card-subtitle>
-        <ion-card-subtitle>{{ place?.typePlace }}</ion-card-subtitle>
+        <ion-card-subtitle>
+          <span class="label">Ciudad:</span> {{ place?.city }}
+        </ion-card-subtitle>
+        
+        <ion-card-subtitle>
+          <span class="label">Tipo:</span> {{ place?.typePlace }}
+        </ion-card-subtitle>
       </div>
     </div>
 

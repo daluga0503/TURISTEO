@@ -1,7 +1,7 @@
 <ion-app>
   <ion-menu #menu contentId="main-content">
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-buttons slot="start">
           <ion-button (click)="menu.close()"><ion-icon slot="icon-only" name="close"></ion-icon></ion-button>
         </ion-buttons>
@@ -11,18 +11,18 @@
         <ion-title>Turisteo</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <ion-list>
-        <ion-item (click)="menu.close()" [routerLink]="['/home']" button detail="false"><ion-icon slot="start" name="home"></ion-icon>Home</ion-item>
-        <ion-item (click)="menu.close()" [routerLink]="['/seeplace']" button detail="false"><ion-icon slot="start" name="trail-sign-outline"></ion-icon>Ver Sitios</ion-item>
-        <ion-item (click)="menu.close()" [routerLink]="['/addplace']" button detail="false"><ion-icon slot="start" name="pin-outline"></ion-icon>Añadir Sitio</ion-item>
-        <ion-item (click)="menu.close()" [routerLink]="['/see-favs']" button detail="false"><ion-icon slot="start" name="pin-outline"></ion-icon>Mis Guardados</ion-item>
-        <ion-item (click)="menu.close()" [routerLink]="['/about-me']" button detail="false"><ion-icon slot="start" name="pin-outline"></ion-icon>Sobre mi</ion-item>
-        <ion-item (click)="onSignOut()" color="danger" button detail="false"><ion-icon slot="start" name="log-out-outline"></ion-icon>Log out</ion-item>
+    <ion-content class="ion-padding" color="light">
+      <ion-list >
+        <ion-item color="light" (click)="menu.close()" [routerLink]="['/home']" button detail="false"><ion-icon slot="start" name="home"></ion-icon>Home</ion-item>
+        <ion-item color="light" (click)="menu.close()" [routerLink]="['/seeplace']" button detail="false"><ion-icon slot="start" name="trail-sign-outline"></ion-icon>Ver Sitios</ion-item>
+        <ion-item color="light" (click)="menu.close()" [routerLink]="['/addplace']" button detail="false"><ion-icon slot="start" name="pin-outline"></ion-icon>Añadir Sitio</ion-item>
+        <ion-item color="light" (click)="menu.close()" [routerLink]="['/see-favs']" button detail="false"><ion-icon slot="start" name="pin-outline"></ion-icon>Mis Guardados</ion-item>
+        <ion-item color="light" (click)="menu.close()" [routerLink]="['/about-me']" button detail="false"><ion-icon slot="start" name="pin-outline"></ion-icon>Sobre mi</ion-item>
+        <ion-item color="light" (click)="onSignOut()" color="danger" button detail="false"><ion-icon slot="start" name="log-out-outline"></ion-icon>Log out</ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
-  <div class="ion-page" id="main-content">
+  <div class="ion-page" id="main-content" >
   <app-navbar ></app-navbar>
     <ion-router-outlet></ion-router-outlet>
   </div>

@@ -1,0 +1,39 @@
+.card-content {
+    max-width: 30%;
+    width: 100%; /* Ajusta el valor según tus necesidades */
+    margin: 20px 5px; /* Centra la tarjeta horizontalmente */
+    align-items: center;
+    justify-content: center;
+}
+
+.place-info {
+    display: flex;
+    align-items: center; 
+}
+
+
+.place-photo {
+    max-width: 20%;
+    height: auto;
+    width: 20%; 
+    object-fit: cover; 
+    border-radius: 8px; 
+}
+
+.place-details {
+    padding: 10px; 
+    margin-bottom: 5px;
+}
+
+.detail {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 767px) {
+    .card-content {
+        max-width: 90%;
+        justify-content: center;
+    }
+}

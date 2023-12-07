@@ -98,7 +98,7 @@ import { AuthService } from "./auth.service";
       }
 
       
-      
+      /*
       public getAll(): Observable<Place[]> {
         return this.api.get('/sitios').pipe(
           map(response => {
@@ -107,12 +107,33 @@ import { AuthService } from "./auth.service";
             return places;
           })
         );
+      }*/
+
+      public getAll(): Observable<Place[]> {
+        return this.api.get('/sitios?populate=*').pipe(
+          map(response => {
+            const places = response.data.map(({ id, attributes }: { id: number, attributes: any }) => this.mapToPlace({ id, ...attributes }));
+            this._places.next(places);
+            return places;
+          })
+        );
       }
 
 
-
+      /*
       getAllById(userId: number): Observable<Place[]> {
         return this.api.get(`/sitios?filters[userId]=${userId}`).pipe(
+          map(response => {
+            const personalPlaces = response.data.map(({ id, attributes }: { id: number, attributes: Attributes }) => this.mapToPlace({ id, ...attributes }));
+            this._personalPlaces.next(personalPlaces);
+            console.log(this._personalPlaces.value)
+            return personalPlaces;
+          })
+        );
+      }*/
+
+      getAllById(userId: number): Observable<Place[]> {
+        return this.api.get(`/sitios?filters[userId]=${userId}&populate=*`).pipe(
           map(response => {
             const personalPlaces = response.data.map(({ id, attributes }: { id: number, attributes: Attributes }) => this.mapToPlace({ id, ...attributes }));
             this._personalPlaces.next(personalPlaces);
@@ -136,7 +157,7 @@ import { AuthService } from "./auth.service";
       );
   }
 
-
+  /*
     private mapToPlace(data: any): Place {
         return {
             placeId: data.id,
@@ -145,7 +166,17 @@ import { AuthService } from "./auth.service";
             photo: data.photo,
             typePlace: data.typePlace,
         };
-    }
+    }*/
+
+    private mapToPlace(data: any): Place {
+      return {
+          placeId: data.id,
+          name: data.name,
+          city: data.city,
+          photo: data.photo.data[0]?.attributes?.url || null,
+          typePlace: data.typePlace,
+      };
+  }
 
     private mapToPlaceUpdate(sitio: any): any {
       const place = {data: {

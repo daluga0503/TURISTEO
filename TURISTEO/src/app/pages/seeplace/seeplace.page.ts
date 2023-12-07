@@ -49,7 +49,7 @@ export class SeeplacePage implements OnInit {
       error => {
         console.log(error);
       }
-    );
+    )
   }
 
   public onChangeFavorite(place: Place, favPlace:favPlace){

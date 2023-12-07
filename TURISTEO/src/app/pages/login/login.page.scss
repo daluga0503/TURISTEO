@@ -1,6 +1,6 @@
 
 ion-content {
-    position: relative;
+    //position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +23,8 @@ ion-card {
 
 
 .logo {
-    margin-left: 70px;
+    //margin-left: 70px;
+    margin-left: 25%;
     width: 50%;
     height: 50%;
     border-radius: 2px #fff solid;
@@ -36,5 +37,11 @@ ion-card {
     font-weight: bold;
 }
 
+@media (max-width: 600px) {
+    ion-card {
+        margin-top: 35%;
+        width: 60%;
+    }
+}
 
 

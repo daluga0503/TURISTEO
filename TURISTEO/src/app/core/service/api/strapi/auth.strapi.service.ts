@@ -68,11 +68,12 @@ export class AuthStrapiService extends AuthService{
   logout():Observable<void>{
     return this.jwtSvc.destroyToken().pipe(map(_=>{
       this._logged.next(false);
-      this._userIdSubject.next(null); //reinicio el id del usuario
+      //this._userIdSubject.next(null); //reinicio el id del usuario
       return;
     }));
   }
 
+  
   register(info:UserRegisterInfo):Observable<void>{
     return new Observable<void>(obs=>{
       const _info:StrapiRegisterPayload = {
@@ -86,12 +87,12 @@ export class AuthStrapiService extends AuthService{
           this._logged.next(connected);
           await lastValueFrom(this.jwtSvc.saveToken(data.jwt));
           const _extended_users:StrapiExtendedUser= {
-            //data:{
+            data:{
               name:info.name,
               surname:info.surname,
-              //users_permissions_user:data.user.id
-              user_id:data.user.id
-            //}
+              users_permissions_user:data.user.id
+              //user_id:data.user.id
+            }
           }
           await lastValueFrom(this.apiSvc.post("/extended-users", _extended_users)).catch;
           obs.next();
@@ -103,6 +104,10 @@ export class AuthStrapiService extends AuthService{
       });
     });
   }
+
+  
+  
+  
   /*
   public me():Observable<User>{
     return new Observable<User>(obs=>{
@@ -134,9 +139,12 @@ export class AuthStrapiService extends AuthService{
             let extended_user: StrapiArrayResponse<StrapiExtendedUser> = await lastValueFrom(this.apiSvc.get(`/extended-users?filters[users_permissions_user]=${user.id}`));
               let ret: User = {
                 id:user.id,
-                name:extended_user.data[0].attributes.name,
-                surname:extended_user.data[0].attributes.surname,
-                nickname:extended_user.data[0].attributes.nickname
+                name:user.username,
+                surname:user.email,
+                nickname:user.email
+                //name:extended_user.data[0].attributes.data.name,
+                //surname:extended_user.data[0].attributes.data.surname,
+                //nickname:extended_user.data[0].attributes.nickname
               }
               obs.next(ret);
               obs.complete();
@@ -146,8 +154,6 @@ export class AuthStrapiService extends AuthService{
         }
       });
     });
-  }
-  
-  
+  }  
 
 }

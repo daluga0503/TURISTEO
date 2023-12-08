@@ -1,3 +1,5 @@
-<div class="favButton" >
-  <ion-button  (click)="onFavClick($event)"><ion-icon name="{{ isFavorite ? 'star' : 'star-outline' }}"></ion-icon></ion-button>
+<div >
+  <ion-button  (click)="onFavClick($event)" [ngClass]="{'favIcon': true, 'active': isFavorite}" class="favIcon">
+    <ion-icon name="{{ isFavorite ? 'star' : 'star-outline' }}"></ion-icon>
+  </ion-button>
 </div>

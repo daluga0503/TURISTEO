@@ -68,6 +68,7 @@ export class favPlaceService{
         )
     }
 
+
     private mapToFav(data: any): favPlace {
         return {
             idFav: data.id,

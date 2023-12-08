@@ -23,7 +23,7 @@ export class SingupPage implements OnInit {
         console.log('success');
       },
       error:err =>{
-        console.error(`Error ${err}`);
+        console.error(err);
       }      
     });
   }

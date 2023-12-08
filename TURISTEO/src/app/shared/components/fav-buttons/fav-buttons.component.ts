@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Place } from 'src/app/core/models/place';
+import { favPlaceService } from 'src/app/core/service/api/favPlace.service';
 
 @Component({
   selector: 'app-fav-buttons',
@@ -12,11 +13,15 @@ export class FavButtonsComponent  implements OnInit {
 
   @Output() favClick:EventEmitter<Place> = new EventEmitter<Place>()
 
+
   isFavorite: boolean = false;
 
-  constructor() { }
+  constructor(
+    public favPlaceSvc: favPlaceService
+  ) { }
 
   ngOnInit() {}
+
 
   onFavClick(event:any){
     if (this.place) {

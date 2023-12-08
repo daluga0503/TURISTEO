@@ -14,23 +14,19 @@ export class AppComponent {
 
   user:User|undefined = undefined;
 
+  username:string='';
+
   constructor(
     private router:Router,
     private auth: AuthService
-  ) {/*
-    this.auth.isLogged$.subscribe(logged=>{
-      if(logged){
-        this.router.navigate(['/home']);
-      } else {
-        this.router.navigate(['/login'])
-      }
-    });*/
-
+  ) {
     this.auth.isLogged$.subscribe(logged=>{
       
       if(logged){
         this.auth.me().subscribe(data=>{
           this.user = data;
+          this.username = data.name;
+          console.log(this.username);
         });
         this.router.navigate(['/home']);
       }

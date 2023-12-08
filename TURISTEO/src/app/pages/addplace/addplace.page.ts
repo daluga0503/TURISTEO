@@ -37,16 +37,21 @@ export class AddplacePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
     this.auth.userId$.subscribe(userId => {
       if (userId !== null) {
         this.loadPlaces(userId);
         this.id = userId;
       }
     });
-    /*
-    if(this.auth.id!=undefined){
-    this.loadPlaces(this.auth.id);
-    }*/
+    */
+
+    this.auth.me().subscribe(user =>{
+      if (user.id!=null) {
+        this.id = user.id;
+        this.loadPlaces(user.id)
+      }
+    })
   }
 
 

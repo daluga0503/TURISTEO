@@ -17,12 +17,22 @@ export class AppComponent {
   constructor(
     private router:Router,
     private auth: AuthService
-  ) {
+  ) {/*
     this.auth.isLogged$.subscribe(logged=>{
       if(logged){
         this.router.navigate(['/home']);
       } else {
         this.router.navigate(['/login'])
+      }
+    });*/
+
+    this.auth.isLogged$.subscribe(logged=>{
+      
+      if(logged){
+        this.auth.me().subscribe(data=>{
+          this.user = data;
+        });
+        this.router.navigate(['/home']);
       }
     });
   }

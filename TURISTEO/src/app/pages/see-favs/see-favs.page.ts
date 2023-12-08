@@ -24,12 +24,19 @@ export class SeeFavsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
     this.auth.userId$.subscribe(userId => {
       if (userId !== null) {
         this.loadFavPlaces(userId);
         this.id = userId;
       }
-    });
+    });*/
+
+    this.auth.me().subscribe(user=>{
+      if (user.id!=null) {
+        this.loadFavPlaces(user.id);
+      }
+    })
   }
 
 

@@ -30,13 +30,17 @@ export class SeeplacePage implements OnInit {
 
   ngOnInit() {
     /*
-    console.log('Initializing SeeplacePage...');
-    this.loadPlaces();
-    */
     this.auth.userId$.subscribe(userId => {
       if (userId !== null) {
         this.loadPlaces();
         this.id = userId;
+      }
+    });
+    */
+    this.auth.me().subscribe(user=>{
+      if(user.id !== null){
+        this.id = user.id;
+        this.loadPlaces();
       }
     });
   }

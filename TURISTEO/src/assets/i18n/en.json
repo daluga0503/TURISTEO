@@ -1,24 +1,77 @@
 {
-    "home":{
-        "description":"Discover and share the most fascinating corners of the world with our app. Add your own sights and find hidden gems recommended by other passionate travelers. Explore the world through the eyes of the TURISTEO community!",
-        "realizado":"Made by "
+    "home": {
+        "description": "Discover and share the most fascinating corners of the world with our application. Add your own points of interest and find hidden gems recommended by other passionate travelers. Explore the world through the eyes of the TURISTEO community!",
+        "realizado": "Made by "
     },
 
-    "login":{
-        "email":"Email",
-        "pass":"Password",
-        "buttonLoogin":"Login",
-        "noCuenta":"Not have an account",
-        "noCuentaRegister":"Register",
-        "emailRequired":"Email must be obligatory",
-        "emailInvalid":"Invalid Email",
-        "passwordRequired":"Password must be obligatory",
-        "passwordInvalid":"Invalid Password"
+    "login": {
+        "email": "Email",
+        "pass": "Password",
+        "buttonLogin": "Login",
+        "noCuenta": "Don't have an account?",
+        "noCuentaRegister": "Register",
+        "emailRequired": "Email required",
+        "emailInvalid": "Invalid email",
+        "passwordRequired": "Password required",
+        "passwordInvalid": "Invalid password"
     },
-    "register":{
-        "email":"Email",
-        "pass":"Password",
-        "confirmPassword":"Confirm password",
-        "buttonRegister":"Register"
+
+    "register": {
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "pass": "Password",
+        "confirmPass": "Confirm Password",
+        "buttonRegister": "Register",
+        "nameRequired": "Name required",
+        "surnameRequired": "Surname required",
+        "emailRequired": "Email required",
+        "emailInvalid": "Invalid email",
+        "passwordRequired": "Password required",
+        "passwordInvalid": "Invalid password. Minimum 6 characters"
+    },
+
+    "navbarlateral": {
+        "home": "Home",
+        "seePlaces": "See Places",
+        "personalPlaces": "My Places",
+        "favPlaces": "Favorites",
+        "aboutMe": "About Me",
+        "logout": "Logout"
+    },
+
+    "navbar": {
+        "language": "Language"
+    },
+
+    "placeinfo": {
+        "city": "City",
+        "type": "Type"
+    },
+
+    "placeform": {
+        "namePlace": "Place Name",
+        "nameCity": "City Name",
+        "name":"Site",
+        "city":"City",
+        "type": "Place Type",
+        "park": "Park",
+        "monument": "Monument",
+        "churche": "Church",
+        "construction": "Construction",
+        "viewpoint": "Viewpoint",
+        "beach": "Beach",
+        "create": "Create",
+        "save": "Save"
+    },
+
+    "placefav": {
+        "city": "City",
+        "type": "Type"
+    },
+    "aboutMe":{
+        "study": "Student in 2nd year of DAM",
+        "text1": "I am a 19-year-old student from Malaga, studying the training cycle of 2nd year of DAM. Passionate about technology since childhood and currently delving into the world of application development. In my free time, I usually engage in sports activities, such as going to the gym, playing paddle tennis, or watching football.",
+        "text2": "Turisteo is an application dedicated to those individuals who enjoy sharing experiences and being recommended by others during their travels."
     }
 }

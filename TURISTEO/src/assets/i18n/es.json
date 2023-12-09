@@ -27,8 +27,45 @@
         "emailRequired":"Email obligatorio",
         "emailInvalid":"Email incorrecto",
         "passwordRequired":"Contraseña obligatoria",
-        "passwordInvalid":"Contraseña incorrecta. Mínimo 6 dígitos",
-        "confirmPassword":"Confirmación obligatoria",
-        "matchPassword":"Las contraseñas no coinciden"
+        "passwordInvalid":"Contraseña incorrecta. Mínimo 6 dígitos"
+    },   
+    "navbarlateral":{
+        "home":"Inicio",
+        "seePlaces":"Ver Sitios",
+        "personalPlaces":"Mis Sitios",
+        "favPlaces":"Favoritos",
+        "aboutMe":"Sobre mi",
+        "logout":"Cerrar Sesión"
+    },
+    "navbar":{
+        "idioma":"Idioma"
+    },
+    "placeinfo":{
+        "city":"Ciudad",
+        "type":"Tipo"
+    },
+    "placeform":{
+        "namePlace":"Nombre del Sitio",
+        "nameCity":"Nombre de la Ciudad",
+        "name":"Sitio",
+        "city":"Ciudad",
+        "type":"Tipo de lugar",
+        "park":"Parque",
+        "monument":"Monumento",
+        "churche":"Iglesia",
+        "construction":"Construcción",
+        "viewpoint":"Mirador",
+        "beach":"Playa",
+        "create":"Crear",
+        "save":"Guardar"
+    },
+    "placefav":{
+        "city":"Ciudad",
+        "type":"Tipo"
+    },
+    "aboutMe":{
+        "study":"Estudiante 2ºDAM",
+        "text1":"Soy un alumno malagueño de 19 años, estudiando el ciclo formativo de 2ºDAM. Apasionado de la tecnología desde pequeño y actualmente iniciándome en el mundo del desarrollo de aplicaciones. En mis ratos libres suelo hacer deporte, como ir al gimnasio, jugar al pádel o ver el fútbol.",
+        "text2":"Turisteo es una aplicación dedicada a aquellas personas que en los viajes les gusta compartir experiencias y ser recomendados por otras personas."
     }
 }

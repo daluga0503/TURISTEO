@@ -3,13 +3,13 @@
     <div class="place-info">
       <img [src]="favPlace?.sitiosId?.photo" alt="Place Photo" class="place-photo" />
       <div class="place-details">
-        <ion-card-title>{{ favPlace?.sitiosId?.name }}</ion-card-title>
+        <ion-card-title>{{ favPlace?.sitiosId?.name ?? '' |  capitalizeWords}}</ion-card-title>
         <div class="detail">
-          <ion-card-subtitle>Ciudad:</ion-card-subtitle>
+          <ion-card-subtitle>{{'placefav.city' | translate}}:</ion-card-subtitle>
           <ion-card-subtitle>{{ favPlace?.sitiosId?.city }}</ion-card-subtitle>
         </div>
         <div class="detail">
-          <ion-card-subtitle>Tipo:</ion-card-subtitle>
+          <ion-card-subtitle>{{'placefav.type' | translate}}:</ion-card-subtitle>
           <ion-card-subtitle>{{ favPlace?.sitiosId?.typePlace }}</ion-card-subtitle>
         </div>
       </div>

@@ -3,7 +3,7 @@
     <ion-menu-button  class="buttons" slot="start"></ion-menu-button>
     <ion-buttons slot="end" class="buttons">
       <ion-item color="black" (ionChange)="onChangeLanguage($event)">
-        <ion-select label="Idioma">
+        <ion-select label='{{"navbar.idioma" | translate}}'>
           <ion-select-option [value]="'en'">English</ion-select-option>
           <ion-select-option [value]="'es'">Español</ion-select-option>
         </ion-select>

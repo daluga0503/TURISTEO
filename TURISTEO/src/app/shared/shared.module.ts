@@ -16,6 +16,8 @@ import { PlaceInfoComponent } from './components/place-info/place-info.component
 import { EditDeleteButtonsComponent } from './components/edit-delete-buttons/edit-delete-buttons.component';
 import { FavButtonsComponent } from './components/fav-buttons/fav-buttons.component';
 import { PlaceFavComponent } from './components/place-fav/place-fav.component';
+import { CapitalizeWordsPipe } from './pipes/capital-words.pipe';
+import { HighlightCardDirective } from './directives/card.directive';
 
 
 
@@ -31,7 +33,11 @@ import { PlaceFavComponent } from './components/place-fav/place-fav.component';
     PlaceInfoComponent,
     EditDeleteButtonsComponent,
     FavButtonsComponent,
-    PlaceFavComponent
+    PlaceFavComponent,
+    //pipe
+    CapitalizeWordsPipe,
+    //directive
+    HighlightCardDirective
   ],
   imports: [
     CommonModule,
@@ -65,7 +71,9 @@ import { PlaceFavComponent } from './components/place-fav/place-fav.component';
     PlaceInfoComponent,
     EditDeleteButtonsComponent,
     FavButtonsComponent,
-    PlaceFavComponent
+    PlaceFavComponent,
+    CapitalizeWordsPipe,
+    HighlightCardDirective
   ]
 })
 export class SharedModule { }

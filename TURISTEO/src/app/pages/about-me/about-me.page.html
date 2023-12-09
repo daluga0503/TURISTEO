@@ -1,26 +1,35 @@
 <ion-content [fullscreen]="true" class="ion-padding">
-  <body>
-    <div class="custom-margin">
-      <div class="container">
-        <h1>Daniel Luque Gallardo</h1>
-        <h2>Estudiante 2ºDAM</h2>
-        <div class="image">
-          <img src="assets/img/DANI.png" alt="Fotografía about-me">
-        </div>
-        <p>Apasionado de la tecnología y del mundo de la programación.
-        Actualmente cursando el segundo curso de desarrollo de aplicaciones multiplataforma en el C.P.I.F.P ALAN-TURING.
-        En mi tiempo libre me gusta hacer deporte como correr, gym, fútbol o pádel, pasar tiempo con amigos y familiares y ver partidos de fútbol.
-        Druante el primer trimestre he estado trabajando en un proyecto llamado TURISTEO, una aplicación que te facilita el trabajo de buscar sitios característicos de la zona.
-        En ella podrás tanto consultar los sitios que a otros usuarios de la aplicación le ha resultado atractivo, como publicar y compartir un sitio que te resulte interesante de consultar.</p>
-        <div class="links">
-          <a href="https://github.com/tu-usuario" target="_blank" class="link">
-            <img src="ruta-a-tu-icono-de-github.png" alt="GitHub">
-          </a>
-          <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="link">
-            <img src="ruta-a-tu-icono-de-linkedin.png" alt="LinkedIn">
-          </a>
-        </div>
-      </div>
+  <div class="content-container">
+    <div class="profile-card">
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <div class="image-container">
+            <ion-img class="profile-image" src="../../../assets/img/DANI.png" alt="Imagen"></ion-img>
+          </div>
+          <ion-text class="text-container">
+            <h1>Daniel Luque Gallardo</h1>
+            <h2>{{"aboutMe.study" | translate}}</h2>
+          </ion-text>
+          <div class="description-container">
+            <p>{{"aboutMe.text1" | translate}}</p>
+            <p>{{"aboutMe.text2" | translate}}</p>
+          </div>
+          <div class="social-links">
+            <ion-button href="https://github.com/daluga0503" target="_blank">
+              <ion-icon name="logo-github"></ion-icon>
+            </ion-button>
+            <ion-button href="https://www.linkedin.com/in/daniel-luque-gallardo-9a568a25a/" target="_blank">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </ion-button>
+            <ion-button href="mailto:dluqgal0503@g.educaand.es">
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
     </div>
-  </body>
+  </div>
 </ion-content>
+
+
+

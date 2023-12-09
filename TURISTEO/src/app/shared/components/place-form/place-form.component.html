@@ -4,16 +4,16 @@
     <app-picture-selectable formControlName="photo"></app-picture-selectable>
 
     <ion-item class="input">
-      <ion-input formControlName="name" label="Nombre del lugar" placeholder="Sitio"></ion-input>
+      <ion-input formControlName="name" label="{{'placeform.namePlace' | translate}}" placeholder='{{"placeform.name" | translate}}'></ion-input>
     </ion-item>
 
     <ion-item class="input">
-      <ion-input formControlName="city" label="Nombre de la ciudad" placeholder="Ciudad"></ion-input>
+      <ion-input formControlName="city" label="{{'placeform.nameCity' | translate}}" placeholder='{{"placeform.city" | translate}}'></ion-input>
     </ion-item>
 
 
     <ion-item class="input">
-      <ion-label>Tipo de lugar</ion-label>
+      <ion-label>{{'placeform.type' | translate}}</ion-label>
         <ion-select formControlName="typePlace">
           <ion-select-option value="Park">Parque</ion-select-option>
           <ion-select-option value="Monument">Monumento</ion-select-option>
@@ -24,6 +24,6 @@
         </ion-select>
     </ion-item>
 
-    <ion-button type="submit" [disabled]="!form.valid || !form.dirty" class="ion-padding" expand="full" (click)="onSubmit()">{{(mode=='New'?'Crear':'Guardar')}}</ion-button>
+    <ion-button type="submit" [disabled]="!form.valid || !form.dirty" class="ion-padding" expand="full" (click)="onSubmit()">{{(mode=='New' ? 'placeform.create' : 'placeform.save') | translate}}</ion-button>
   </ion-list>
 </form>

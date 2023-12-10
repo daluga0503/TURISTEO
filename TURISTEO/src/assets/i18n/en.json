@@ -17,6 +17,7 @@
     },
 
     "register": {
+        "username":"Nickname",
         "name": "Name",
         "surname": "Surname",
         "email": "Email",

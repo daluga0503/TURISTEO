@@ -16,6 +16,7 @@
         "passwordInvalid":"Contraseña incorrecta"
     },
     "register":{
+        "username":"Apodo",
         "name":"Nombre",
         "surname":"Apellido",
         "email":"Email",

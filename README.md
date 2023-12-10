@@ -4,11 +4,7 @@ Turisteo es una aplicación diseñada para facilitar el trabajo a aquellos turis
 
 ![logo1](https://github.com/daluga0503/TURISTEO/assets/115071227/995779fe-5235-468c-a4a1-81753da2caa1)
 
-
-
-
 La aplicación está desarrollada en Ionic y Angular y su backend en Strapi.
-
 
 La aplicación consta de 5 páginas, cada uno con una funcionalidad distinta.
 Home: Página de bienvenida a la aplicación.

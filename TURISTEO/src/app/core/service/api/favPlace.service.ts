@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, switchMap, tap } from "rxjs";
+import { BehaviorSubject, Observable, map,  tap } from "rxjs";
 import { favPlace } from "../../models/favPlace";
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
@@ -39,19 +39,6 @@ export class favPlaceService{
             })
         );
     }
-
-    /*
-    addFavorite(userId: number, placeId: number): Observable<favPlace> {
-        return this.api.post(`/sitios-intereses`, { data: { users_id: userId, sitios_id: placeId } }).pipe(
-            map(response => {
-            const newFavorite = this.mapToFav(response.data);
-            const updatedFavPlaces = [...this._fav.value, newFavorite];
-            this._fav.next(updatedFavPlaces);
-            return newFavorite;
-            })
-        );
-    }
-    */
 
     addFavorite(userId: number, placeId: number): Observable<favPlace> {
         return this.api.post(`/sitio-intereses`, { data: { users_id: userId, sitios_id: placeId } }).pipe(

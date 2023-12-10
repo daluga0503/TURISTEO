@@ -33,11 +33,13 @@ const routes: Routes = [
   },
   {
     path: 'about-me',
-    loadChildren: () => import('./pages/about-me/about-me.module').then( m => m.AboutMePageModule)
+    loadChildren: () => import('./pages/about-me/about-me.module').then( m => m.AboutMePageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'see-favs',
-    loadChildren: () => import('./pages/see-favs/see-favs.module').then( m => m.SeeFavsPageModule)
+    loadChildren: () => import('./pages/see-favs/see-favs.module').then( m => m.SeeFavsPageModule),
+    canActivate:[AuthGuard]
   },
 ];
 

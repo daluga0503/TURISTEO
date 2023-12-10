@@ -88,6 +88,8 @@ import { AuthService } from "./auth.service";
               // Notificar a los observadores sobre la lista completa de lugares actualizada
               this._places.next(updatedPlaces);
 
+              this.getAll().subscribe();
+
               // Actualizar personalPlaces$ con la lista actualizada para userId
               this.getAllById(userId).subscribe();
 
@@ -114,6 +116,7 @@ import { AuthService } from "./auth.service";
           map(response => {
             const places = response.data.map(({ id, attributes }: { id: number, attributes: any }) => this.mapToPlace({ id, ...attributes }));
             this._places.next(places);
+            console.log(this._places);
             return places;
           })
         );

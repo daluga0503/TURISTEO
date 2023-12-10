@@ -1,6 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ModalController, PopoverController, ToastController, ToastOptions } from '@ionic/angular';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, take } from 'rxjs';
 import { dataURLtoBlob } from 'src/app/core/helpers/blob';
 import { Place } from 'src/app/core/models/place';
 import { User } from 'src/app/core/models/user';
@@ -75,7 +75,6 @@ export class AddplacePage implements OnInit {
     
       await modal.present();
   }
-
 
 
   onNewPlace() {
